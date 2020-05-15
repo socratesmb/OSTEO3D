@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cuestionario</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--forms-wizard css-->
+    <link rel="stylesheet" type="text/css" href="..\files\bower_components\jquery.steps\css\jquery.steps.css">
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="..\files\assets\css\style.css">
+    <link rel="stylesheet" type="text/css" href="..\files\assets\css\jquery.mCustomScrollbar.css">
+
+    <!-- ....................... -->
+    <link rel="icon" href="..\files\assets\images\favicon.ico" type="image/x-icon">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="..\files\bower_components\bootstrap\css\bootstrap.min.css">
+    <!-- themify-icons line icon -->
+    <link rel="stylesheet" type="text/css" href="..\files\assets\icon\themify-icons\themify-icons.css">
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="..\files\assets\icon\icofont\css\icofont.css">
+    <!-- feather Awesome -->
+    <link rel="stylesheet" type="text/css" href="..\files\assets\icon\feather\css\feather.css">
+
+    <% include ./partials/style.html%>
+</head>
+
+<body themebg-pattern="pattern4">
+    <div id="pcoded" class="pcoded iscollapsed" nav-type="st6" theme-layout="vertical" vertical-placement="left" vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink" vnavigation-view="view1" fream-type="theme1"
+        sidebar-img="false" sidebar-img-type="img1" layout-type="light">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <% include ./partials/navbar.html%>
+                <% include ./partials/slider.html%>
+                    <div class="pcoded-main-container" style="margin-top: 56px;">
+                        <div class="pcoded-wrapper">
+                            <div class="pcoded-content">
+                                <div class="pcoded-inner-content">
+                                    <div class="main-body">
+                                        <div class="page-wrapper">
+
+                                            <div class="page-body">
+
+                                                <div class="card">
+                                                    <div class="card-block">
+                                                        <div id="Repetidor">
+                                                            <div class="row">
+                                                                <div class="col-md-8">
+                                                                    <label>Pregunta 1</label>
+                                                                    <input type="text" id="" style="border-radius:4px;" name="" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+
+                                                                <div class="col-md-4">
+                                                                    <label>Respuesta</label>
+                                                                    <input type="text" id="" style="border-radius:4px;" name="" class="form-control">
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <label>Correcta</label>
+                                                                    <select class="form-control" name="">
+                                                                    <option value="">Seleccione</option>
+                                                                    <option value="Si">Si</option>
+                                                                    <option value="No">No</option>
+                                                                </select>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Respuesta</label>
+                                                                    <input type="text" id="" style="border-radius:4px;" name="" class="form-control">
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <label>Correcta</label>
+                                                                    <select class="form-control" name="">
+                                                                  <option value="">Seleccione</option>
+                                                                  <option value="Si">Si</option>
+                                                                  <option value="No">No</option>
+                                                                </select>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Respuesta</label>
+                                                                    <input type="text" id="" style="border-radius:4px;" name="" class="form-control">
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <label>Correcta</label>
+                                                                    <select class="form-control" name="">
+                                                                    <option value="">Seleccione</option>
+                                                                     <option value="Si">Si</option>
+                                                                     <option value="No">No</option>
+                                                                 </select>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Respuesta</label>
+                                                                    <input type="text" id="" style="border-radius:4px;" name="" class="form-control">
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <label>Correcta</label>
+                                                                    <select class="form-control" name="">
+                                                                    <option value="">Seleccione </option>
+                                                                     <option value="Si">Si</option>
+                                                                    <option value="No">No</option>
+                                                                </select>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-1">
+                                                                <a id="Agregar" style="margin-top: 20px" class="btn btn-primary">Agregar</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <% include ./partials/js.html%>
+                            <!--Forms - Wizard js-->
+                            <script src="..\files\bower_components\jquery.cookie\js\jquery.cookie.js"></script>
+                            <script src="..\files\bower_components\jquery.steps\js\jquery.steps.js"></script>
+                            <script src="..\files\bower_components\jquery-validation\js\jquery.validate.js"></script>
+                            <!-- Custom js -->
+                            <script src="..\files\assets\pages\forms-wizard-validation\form-wizard.js"></script>
+                            <script src="..\files\assets\js\pcoded.min.js"></script>
+                            <script src="..\files\assets\js\vartical-layout.min.js"></script>
+                            <script src="..\files\assets\js\jquery.mCustomScrollbar.concat.min.js"></script>
+                            <script type="text/javascript" src="..\files\assets\js\script.js"></script>
+                            <!-- dfdsfsdfsdfsdfsdf -->
+
+                            <!-- Editable-table js -->
+                            <script type="text/javascript" src="..\files\assets\pages\edit-table\jquery.tabledit.js"></script>
+                            <script type="text/javascript" src="..\files\assets\pages\edit-table\editable.js"></script>
+
+                            <script>
+                                $(document).ready(() => {
+                                    var bandera = 0;
+                                    var contador = 1;
+                                    $('#Agregar').click(() => {
+                                        bandera = bandera + 1;
+                                        if (bandera > 4) {
+                                            $('#Agregar').hide();
+                                        } else {
+                                            contador = contador + 1;
+                                            $('#Repetidor').append(
+                                                $('<div>', {
+                                                    'class': 'row',
+                                                    'style': 'margin-top: 20px'
+                                                }).append(
+                                                    $('<div>', {
+                                                        'class': 'col-md-8'
+                                                    }).append(
+                                                        $('<label>', {
+                                                            'text': 'Pregunta' + contador
+                                                        }),
+                                                        $('<input>', {
+                                                            'type': 'text',
+                                                            'style': 'border-radius:4px',
+                                                            'class': 'form-control'
+                                                        })
+                                                    ),
+                                                    $('<div>', {
+                                                        'class': 'row',
+                                                        'style': 'padding-left: 15px',
+
+                                                    }).append(
+
+                                                        $('<div>', {
+                                                            'class': 'col-md-4'
+                                                        }).append(
+                                                            $('<label>', {
+                                                                'text': 'Respuesta'
+                                                            }),
+                                                            $('<input>', {
+                                                                'type': 'text',
+                                                                'style': 'border-radius:4px',
+                                                                'class': 'form-control'
+                                                            })
+                                                        ),
+                                                        $('<div>', {
+                                                            'class': 'col-md-2'
+                                                        }).append(
+                                                            $('<label>', {
+                                                                'text': 'Correcta'
+                                                            }),
+                                                            $('<select>', {
+                                                                'style': 'border-radius:4px',
+                                                                'class': 'form-control',
+                                                            }).append($('<option>', {
+                                                                    'text': 'Seleccione',
+                                                                }), $('<option>', {
+                                                                    'text': 'SI',
+                                                                }), $('<option>', {
+                                                                    'text': 'No',
+                                                                })
+
+                                                            )
+                                                        ),
+                                                        $('<div>', {
+                                                            'class': 'col-md-4'
+                                                        }).append(
+                                                            $('<label>', {
+                                                                'text': 'Respuesta'
+                                                            }),
+                                                            $('<input>', {
+                                                                'type': 'text',
+                                                                'style': 'border-radius:4px',
+                                                                'class': 'form-control'
+                                                            })
+                                                        ), $('<div>', {
+                                                            'class': 'col-md-2'
+                                                        }).append(
+                                                            $('<label>', {
+                                                                'text': 'Correcta'
+                                                            }),
+                                                            $('<select>', {
+                                                                'style': 'border-radius:4px',
+                                                                'class': 'form-control',
+                                                            }).append($('<option>', {
+                                                                    'text': 'Seleccione',
+                                                                }), $('<option>', {
+                                                                    'text': 'SI',
+                                                                }), $('<option>', {
+                                                                    'text': 'No',
+                                                                })
+
+                                                            )
+                                                        ), $('<div>', {
+                                                            'class': 'col-md-4'
+                                                        }).append(
+                                                            $('<label>', {
+                                                                'text': 'Respuesta'
+                                                            }),
+                                                            $('<input>', {
+                                                                'type': 'text',
+                                                                'style': 'border-radius:4px',
+                                                                'class': 'form-control'
+                                                            })
+                                                        ),
+                                                        $('<div>', {
+                                                            'class': 'col-md-2'
+                                                        }).append(
+                                                            $('<label>', {
+                                                                'text': 'Correcta'
+                                                            }),
+                                                            $('<select>', {
+                                                                'style': 'border-radius:4px',
+                                                                'class': 'form-control',
+                                                            }).append($('<option>', {
+                                                                    'text': 'Seleccione',
+                                                                }), $('<option>', {
+                                                                    'text': 'SI',
+                                                                }), $('<option>', {
+                                                                    'text': 'No',
+                                                                })
+
+                                                            )
+                                                        ),
+                                                        $('<div>', {
+                                                            'class': 'col-md-4'
+                                                        }).append(
+                                                            $('<label>', {
+                                                                'text': 'Respuesta'
+                                                            }),
+                                                            $('<input>', {
+                                                                'type': 'text',
+                                                                'style': 'border-radius:4px',
+                                                                'class': 'form-control'
+                                                            })
+                                                        ), $('<div>', {
+                                                            'class': 'col-md-2'
+                                                        }).append(
+                                                            $('<label>', {
+                                                                'text': 'Correcta'
+                                                            }),
+                                                            $('<select>', {
+                                                                'style': 'border-radius:4px',
+                                                                'class': 'form-control',
+                                                            }).append($('<option>', {
+                                                                    'text': 'Seleccione',
+                                                                }), $('<option>', {
+                                                                    'text': 'SI',
+                                                                }), $('<option>', {
+                                                                    'text': 'No',
+                                                                })
+
+                                                            )
+                                                        )
+                                                    )
+                                                )
+
+                                            )
+                                        }
+
+                                    })
+                                })
+                            </script>
+                    </div>
+</body>
+
+</html>

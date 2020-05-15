@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Visualizacion</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="..\files\bower_components\carrusel\css\styles.css">
+
+    <% include ./partials/style.html%>
+
+</head>
+
+<body themebg-pattern="pattern4">
+    <div id="pcoded" class="pcoded iscollapsed" nav-type="st6" theme-layout="vertical" vertical-placement="left" vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink" vnavigation-view="view1" fream-type="theme1"
+        sidebar-img="false" sidebar-img-type="img1" layout-type="light">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <% include ./partials/navbar.html%>
+                <% include ./partials/slider.html%>
+                    <div class="pcoded-main-container" style="margin-top: 56px;">
+                        <div class="pcoded-wrapper">
+                            <div class="pcoded-content">
+                                <div class="pcoded-inner-content">
+                                    <div class="main-body">
+                                        <div class="page-wrapper">
+                                            <div class="page-body">
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div data-component="" id="view200">
+                                                            <section class="c-model-page-popup__container view sidebar-right model-container">
+
+                                                                <div class="main c-model-page-popup__main">
+                                                                    <div data-component="" id="view201">
+                                                                        <div class="c-viewer">
+                                                                            <iframe title="Sketchfab Viewer" style="height:300px;width:500px;" data-ref="iframe" class="c-viewer__iframe" src="https://sketchfab.com/3d-models/super-retopo-8822eb468b5443178b5bc529a7d24a3e/embed?autostart=1&amp;internal=1&amp;ui_infos=0&amp;ui_snapshots=1&amp;ui_stop=0&amp;ui_watermark=0"
+                                                                                id="api-frame" allow="autoplay;fullscreen;vr" allowvr="" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </section>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="card">
+
+                                                            <div class="card-block">
+                                                                <h1>Craneo</h1>
+                                                                <h5>Nombre</h5>plecturosebus caquetensis (Tití)
+                                                                <h5>Descripcion</h5> Modelo de craneo de un primate
+                                                                <h5>Alto</h5> 3.5 cemtimetros
+                                                                <h5>Ancho</h5> 4.7 cetimetros
+                                                                <h5>Nombre Comun</h5>Mono Tití
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div id="carrusel">
+                                                        <a href="#" class="left-arrow"><img src="..\files\bower_components\carrusel\images/left-arrow.png" /></a>
+                                                        <a href="#" class="right-arrow"><img src="..\files\bower_components\carrusel\images/right-arrow.png" /></a>
+                                                        <div class="carrusel">
+                                                            <div class="product" id="product_0">
+                                                                <img src="..\files\bower_components\carrusel\gallery/1.jpg" width="195" height="100" />
+                                                            </div>
+                                                            <div class="product" id="product_1">
+                                                                <img src="..\files\bower_components\carrusel\gallery/2.jpg" width="195" height="100" />
+                                                            </div>
+                                                            <div class="product" id="product_2">
+                                                                <img src="..\files\bower_components\carrusel\gallery/3.jpg" width="195" height="100" />
+                                                            </div>
+                                                            <div class="product" id="product_3">
+                                                                <img src="..\files\bower_components\carrusel\gallery/4.jpg" width="195" height="100" />
+                                                            </div>
+                                                            <div class="product" id="product_4">
+                                                                <img src="..\files\bower_components\carrusel\gallery/5.jpg" width="195" height="100" />
+                                                            </div>
+                                                            <div class="product" id="product_5">
+                                                                <img src="..\files\bower_components\carrusel\gallery/6.jpg" width="195" height="100" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+        </div>
+    </div>
+    <% include ./partials/js.html%>
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script>
+            var current = 0;
+            var imagenes = new Array();
+
+            $(document).ready(function() {
+                var numImages = 6;
+                if (numImages <= 3) {
+                    $('.right-arrow').css('display', 'none');
+                    $('.left-arrow').css('display', 'none');
+                }
+
+                $('.left-arrow').on('click', function() {
+                    if (current > 0) {
+                        current = current - 1;
+                    } else {
+                        current = numImages - 3;
+                    }
+
+                    $(".carrusel").animate({
+                        "left": -($('#product_' + current).position().left)
+                    }, 600);
+
+                    return false;
+                });
+
+                $('.left-arrow').on('hover', function() {
+                    $(this).css('opacity', '0.5');
+                }, function() {
+                    $(this).css('opacity', '1');
+                });
+
+                $('.right-arrow').on('hover', function() {
+                    $(this).css('opacity', '0.5');
+                }, function() {
+                    $(this).css('opacity', '1');
+                });
+
+                $('.right-arrow').on('click', function() {
+                    if (numImages > current + 3) {
+                        current = current + 1;
+                    } else {
+                        current = 0;
+                    }
+
+                    $(".carrusel").animate({
+                        "left": -($('#product_' + current).position().left)
+                    }, 600);
+
+                    return false;
+                });
+            });
+        </script>
+
+</body>
+
+</html>
