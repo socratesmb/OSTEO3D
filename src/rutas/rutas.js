@@ -7,7 +7,7 @@ const passport = require('passport');
 
 // ---- Carga Vista Principal ------
 rutas.get('/', (req, res) => {
-    res.render('index.html');
+    res.render('login.html');
 });
 
 rutas.get('/Especies', (req, res) => {
@@ -25,7 +25,7 @@ rutas.get('/perfil', (req, res) => {
     res.render('perfil.html');
 });
 rutas.get('/login', (req, res) => {
-    res.render('login.html');
+    res.render('index.html');
 });
 rutas.get('/registro', (req, res) => {
     res.render('registro.html');
