@@ -10,6 +10,10 @@ rutas.get('/', (req, res) => {
     res.render('login.html');
 });
 
+rutas.get('/recovery', (req, res) => {
+    res.render('recovery.html')
+});
+
 rutas.get('/Especies', (req, res) => {
     res.render('especies.html');
 });

@@ -1,12 +1,18 @@
-const express = require('express'),
-    path = require('path'),
-    morgan = require('morgan'),
-    session = require('express-session'),
-    mysqlsession = require('express-mysql-session')(session),
-    passport = require('passport');
+const express = require('express');
+const path = require('path');
+const morgan = require('morgan');
+const session = require('express-session');
+const mysqlsession = require('express-mysql-session')(session);
+const passport = require('passport');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+const pool = require('./database/database');
 
 // Carga de archivos
 const fileUpload = require('express-fileupload')
+
+//modulo para las alertas
+const flash = require('connect-flash');
 
 const { database } = require('./keys');
 // Inicializacion
@@ -38,6 +44,7 @@ app.use(session({
     }
 }));
 
+app.use(flash());
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(passport.initialize());
@@ -93,12 +100,12 @@ passport.serializeUser((user, done) => {
 });
 
 // Descodificar el usuario
-passport.deserializeUser(async (id, done) => {    
+passport.deserializeUser(async (id, done) => {
     await pool.query('select * from login where id_login = ?', [id.id_login], (err, user) => {
         if (err) {
             console.log(err);
             done(err);
-        } else {            
+        } else {
             done(err, user);
         }
     });
