@@ -14,6 +14,10 @@ rutas.get('/recovery', (req, res) => {
     res.render('recovery.html')
 });
 
+rutas.get('/admin/creacion', (req, res) => {
+    res.render('creacion.html');
+});
+
 rutas.get('/Especies', (req, res) => {
     res.render('especies.html');
 });

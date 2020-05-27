@@ -12092,12 +12092,12 @@ body.menu-bottom #collapse-menu {
 
 .show>.btn-primary.dropdown-toggle,
 .sweet-alert .show>button.dropdown-toggle.confirm,
-.wizard>.actions .show>a.dropdown-toggle {
+.wizard>.actions .show>a.dropdown-toggle { 
     background-color: #016d6f !important;
     border-color: #016d6f;
     -webkit-box-shadow: none;
     box-shadow: none;
-    color: #fff
+    color: #fff;
 }
 
 #Note-list li:hover .Note-delete {
@@ -12183,6 +12183,7 @@ body.menu-bottom #collapse-menu {
     border-color: #01a9ac;
     color: #fff;
     cursor: pointer;
+    border-radius: 20px;
     -webkit-transition: all ease-in 0.3s;
     transition: all ease-in 0.3s
 }

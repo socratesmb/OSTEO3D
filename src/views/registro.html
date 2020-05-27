@@ -2,85 +2,86 @@
 <html lang="es">
 
 <head>
-    <title>Registro</title>
+    <title>OSTEO 3D | REGISTRO</title>
+
+    <% include ./partials/icono.html%>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="#">
-    <meta name="keywords" content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+    <meta name="keywords"
+        content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
     <meta name="author" content="#">
-    <!-- Favicon icon -->
-    <link rel="icon" href="..\files\assets\images\favicon.ico" type="image/x-icon">
-    <!-- Google font-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
-    <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="..\files\bower_components\bootstrap\css\bootstrap.min.css">
-    <!-- themify-icons line icon -->
-    <link rel="stylesheet" type="text/css" href="..\files\assets\icon\themify-icons\themify-icons.css">
-    <!-- ico font -->
-    <link rel="stylesheet" type="text/css" href="..\files\assets\icon\icofont\css\icofont.css">
-    <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="..\files\assets\css\style.css">
+
+    <% include ./partials/style.html%>
 </head>
 
-<body class="fix-menu">
-
+<body class="fix-menu" onload="HabilitarCampos()">
     <section class="login-block">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <form class="md-float-material form-material">
+                        <div class="text-center">
+                            <img src="/login/STEO-3D.png" alt="logo.png">
+                        </div>
                         <div class="auth-box card">
                             <div class="card-block">
                                 <div class="row m-b-20">
                                     <div class="col-md-12">
-                                        <h3 class="text-center">Registro</h3>
+                                        <h3 class="text-center">Registro de Usuario Nuevo</h3>
                                     </div>
                                 </div>
                                 <div class="row m-b-30">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label> Nombre</label>
-                                            <input type="text" name="NombrePerfil" id="NombrePerfil" class="form-control" valuer="">
+                                            <label>Nombre Completo</label>
+                                            <input type="text" name="NombreRegistro" id="NombreRegistro"
+                                                class="form-control" valuer="">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label> Apellido</label>
-                                            <input type="text" name="ApellidoPerfil" id="ApellidoPerfil" class="form-control" style="text-transform:uppercase" valuer="">
+                                            <label>Apellidos</label>
+                                            <input type="text" name="ApellidoRegistro" id="ApellidoRegistro"
+                                                class="form-control" style="text-transform:uppercase" valuer="">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Tipo Documento</label>
-                                            <select class="form-control" id="exampleFormControlSelect1">
-                                                <option value="">Seleccione una opción</option>
-                                                <option>Cedula de Ciudadania</option>
-                                                <option>Tarjeta de Identidad</option>
-                                                <option>Regsitro civil</option>
-                                              </select>
+                                            <select class="form-control" id="TipoDocumento">
+                                                <option>Seleccione una opción</option>
+                                                <option value="1">Cedula de Ciudadania</option>
+                                                <option value="2">Tarjeta de Identidad</option>
+                                                <option value="3">Regsitro Civil</option>
+                                                <option value="4">Otro Documento</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label> Numero Documento</label>
-                                            <input type="number" name="NumeroDocumentoPerfil" id="NumeroDocumentoPerfil" class="form-control" style="text-transform:uppercase" valuer="">
+                                            <label>Numero Documento</label>
+                                            <input type="number" name="NumeroDocumento" id="NumeroDocumento"
+                                                class="form-control" valuer="" pattern="[0-9]*">
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label> Correo </label>
-                                            <input type="email" name="CorreoPerfil" id="CorreoPerfil" class="form-control" style="text-transform:uppercase" valuer="">
+                                            <label>Correo Electronico</label>
+                                            <input type="email" name="CorreoPerfil" id="CorreoPerfil"
+                                                class="form-control" valuer="">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label> Teléfono </label>
-                                            <input type="number" name="TelefonoPerfil" id="TelefonoPerfil" class="form-control" style="text-transform:uppercase" valuer="" pattern="[0-9]*">
+                                            <input type="number" name="TelefonoPerfil" id="TelefonoPerfil"
+                                                class="form-control" valuer="" pattern="[0-9]*">
                                         </div>
                                     </div>
 
@@ -88,23 +89,36 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Contraseña</label>
-                                            <input type="password" name="ContraseñaPerfil" id="ContraseñaPerfil" class="form-control" placeholder="Contraseña " onkeyup="HabilitarCampos()">
+                                            <input type="password" name="ContraseñaRegistro" id="ContraseñaRegistro"
+                                                class="form-control" placeholder="Ej: 1a2b3c4d*"
+                                                onkeyup="HabilitarCampos()">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Confirmar Contraseña</label>
-                                            <input type="password" name="ConfirContraseñaPerfil" id="ConfirContraseñaPerfil" class="form-control" placeholder="Confirmar Contraseña" onkeyup="VerificarCampos()">
+                                            <input type="password" name="ConfirContraseñaRegistro"
+                                                id="ConfirContraseñaRegistro" class="form-control"
+                                                placeholder="Confirmar Contraseña" onkeyup="VerificarCampos()">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row ">
-                                    <div class=".col-md-6 . m-auto">
-                                        <a type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20" href="/registro">Registrarse</a>
+                                <div class="row m-t-30">
+                                    <div class=".col-md-12. m-auto">
+                                        <button
+                                            class="btn btn-primary btn-md text-center m-b-20"
+                                            id="BtnEditarContraseña" name="BtnEditarContraseña" type="submit">
+                                            Registrarse
+                                        </button>
                                     </div>
-                                    <div class=".col-md-6 . m-auto">
-                                        <a href="/login" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Iniciar Sesión</a>
+                                </div>
+                                <p class="f-w-600 text-center"><a href="/">Volver al Inicio</a></p>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p class="text-inverse text-center m-b-0"><a href="https://mastercode.com.co/"
+                                                target="_newblank">Desarrollado por Master Code S.A.S</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -114,32 +128,28 @@
 
     </section>
 
-    <script type="text/javascript " src="..\files\bower_components\jquery\js\jquery.min.js "></script>
-    <script type="text/javascript " src="..\files\bower_components\jquery-ui\js\jquery-ui.min.js "></script>
-    <script type="text/javascript " src="..\files\bower_components\popper.js\js\popper.min.js "></script>
-    <script type="text/javascript " src="..\files\bower_components\bootstrap\js\bootstrap.min.js "></script>
-    <!-- jquery slimscroll js -->
-    <script type="text/javascript " src="..\files\bower_components\jquery-slimscroll\js\jquery.slimscroll.js "></script>
-    <!-- modernizr js -->
-    <script type="text/javascript " src="..\files\bower_components\modernizr\js\modernizr.js "></script>
-    <script type="text/javascript " src="..\files\bower_components\modernizr\js\css-scrollbars.js "></script>
-    <!-- i18next.min.js -->
-    <script type="text/javascript " src="..\files\bower_components\i18next\js\i18next.min.js "></script>
-    <script type="text/javascript " src="..\files\bower_components\i18next-xhr-backend\js\i18nextXHRBackend.min.js "></script>
-    <script type="text/javascript " src="..\files\bower_components\i18next-browser-languagedetector\js\i18nextBrowserLanguageDetector.min.js "></script>
-    <script type="text/javascript " src="..\files\bower_components\jquery-i18next\js\jquery-i18next.min.js "></script>
-    <script type="text/javascript " src="..\files\assets\js\common-pages.js "></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async=" " src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13 "></script>
+    <% include ./partials/js.html%>
+
+    <!-- Funcion para la contraseña -->
     <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
+        function HabilitarCampos() {
+            document.getElementById("ConfirContraseñaRegistro").disabled = true;
+            document.getElementById("BtnEditarContraseña").disabled = true;
+            if ($('#ContraseñaRegistro').val().length > 0) {
+                document.getElementById("ConfirContraseñaRegistro").disabled = false;
+            } else {
+                document.getElementById("ConfirContraseñaRegistro").disabled = true;
+            }
         }
-        gtag('js', new Date());
 
-        gtag('config', 'UA-23581568-13');
+        function VerificarCampos() {
+            document.getElementById("BtnEditarContraseña").disabled = true;
+            if (document.getElementById("ContraseñaRegistro").value == document.getElementById("ConfirContraseñaRegistro").value) {
+                document.getElementById("BtnEditarContraseña").disabled = false;
+            } else {
+                document.getElementById("BtnEditarContraseña").disabled = true;
+            }
+        }
     </script>
 </body>
 
