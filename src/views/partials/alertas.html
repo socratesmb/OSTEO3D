@@ -1,0 +1,48 @@
+<% if(alerta.tipo=="correcto") {%>
+    <div class="contenedor"> 
+        <script>
+            swal({
+                title: "Correcto",
+                text: "<%=alerta.mensaje %>",
+                icon: "success",
+            });
+        </script>
+    </div>
+    <%}%>
+        
+    <% if(alerta.tipo == "inseguro") {%>
+    <div class="contenedor">
+        <script>
+            swal({
+                title: "Alerta",
+                text: "<%=alerta.mensaje %>",
+                icon: "warning",
+            });
+        </script>
+    </div>
+    <%}%>
+        
+    
+    <% if(alerta.tipo == "peligro") {%>
+    <div class="contenedor">
+        <script>
+            swal({
+                title: "Error",
+                text: "<%=alerta.mensaje %>",
+                icon: "error",
+            });
+        </script>
+    </div>
+    <%}%>
+        
+    <% if(alerta.tipo == "informativo") {%>
+    <div class="contenedor">
+        <script>
+            swal({
+                title: "Error",
+                text: "<%=alerta.mensaje %>",
+                icon: "error",
+            });
+        </script>
+    </div>
+    <%}%>

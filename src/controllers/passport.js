@@ -5,7 +5,7 @@ const pool = require('../database/database');
 const helpers = require('./helper');
 
 // ------------- Iniciar Sesion ------------
-passport.use('local.signin', new Strategy({
+passport.use('local.signin', new Strategy({ 
     usernameField: 'nombre',
     passwordField: 'contrase', 
     passReqToCallback: true
@@ -30,7 +30,7 @@ passport.use('local.signin', new Strategy({
     }
 }));
 
-// -------- Registrar un nombre ------------
+// -------- Registrar un SuperUsuario ------------
 passport.use('local.signup', new Strategy({
     usernameField: 'nombre',
     passwordField: 'contrase',

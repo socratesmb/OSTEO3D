@@ -9,6 +9,6 @@ module.exports = {
         user: 'root',
         password: 'root',
         server: 3306,
-        database: 'bdmaster'
+        database: 'osteo3d'
     }
 }
