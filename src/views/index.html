@@ -1,147 +1,114 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 
 <head>
-    <title>OSTEO 3D</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- ico font -->
-    <link rel="stylesheet" type="text/css" href="..\files\assets\icon\icofont\css\icofont.css">
-    <% include ./partials/style.html%>
+    <title>Osteo 3D</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="../files/bower_components/inicio/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="../files/bower_components/inicio/css/bootstrap.min.css">    
+    <link rel="stylesheet" href="../files/bower_components/inicio/css/jquery.fancybox.min.css">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="../files/bower_components/inicio/css/style.css">
+
 </head>
 
-<body themebg-pattern="pattern4">
-    <!-- Pre-loader end -->
-    <div id="pcoded" class="pcoded iscollapsed" nav-type="st6" theme-layout="vertical" vertical-placement="left:" vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink" vnavigation-view="view1" fream-type="theme1"
-        sidebar-img="false" sidebar-img-type="img1" layout-type="light">
-        <div class="pcoded-container navbar-wrapper">
-            <% include ./partials/navbar.html%>
-                <% include ./partials/slider.html%>
-                    <div class="pcoded-main-container" style="margin-top: 56px;">
-                        <div class="pcoded-wrapper">
-                            <div class="pcoded-content">
-                                <div class="pcoded-inner-content">
-                                    <div class="main-body">
-                                        <div class="page-wrapper">
-
-                                            <div class="page-body">
-                                                <div class="row">
-                                                    <!-- task, page, download counter  start -->
-                                                    <div class="col-xl-3 col-md-6">
-
-                                                        <div class="card">
-                                                            <div class="card-block text-center">
-                                                                <i class="feather icon-book f-30 text-c-lite-green"></i>
-                                                                <h4 class="m-t-20"> Grupo A</h4>
-                                                                <p class="m-b-20">Anatomia</p>
-                                                                <a class="btn btn-primary btn-sm btn-round" href="/Grupos" role="button">Ver</a>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="col-xl-3 col-md-6">
-
-                                                        <div class="card">
-                                                            <div class="card-block text-center">
-                                                                <i class="feather icon-book f-30 text-c-lite-green"></i>
-                                                                <h4 class="m-t-20"> Grupo B</h4>
-                                                                <p class="m-b-20">Anatomia</p>
-                                                                <a class="btn btn-primary btn-sm btn-round" href="#" role="button">Ver</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-3 col-md-6">
-
-                                                        <div class="card">
-                                                            <div class="card-block text-center">
-                                                                <i class="feather icon-book f-30 text-c-lite-green"></i>
-                                                                <h4 class="m-t-20">Grupo C</h4>
-                                                                <p class="m-b-20">Anatomia II</p>
-                                                                <a class="btn btn-primary btn-sm btn-round" href="#" role="button">Ver</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
 
+    <div class="site-wrap" id="home-section">
 
-                                                <div class="row">
-                                                    <!-- task, page, download counter  start -->
-                                                    <div class=".col-md-6 . m-auto">
-                                                        <button type="button" id="idRunTheCode" class="btn btn-primary waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="Agregar nuevo Grupo">
-                                                             <i class="icofont icofont-ui-add"></i><span class="m-l-10">Agregar</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
+        <header class="card-navbar card-navbar-target" style="background: rgb(58, 66, 63)" role="banner">
+            <div class="container">
+                <div class="row align-items-center position-relative">
+                    <div class="col-9 ">
+                        <div class="site-logo">
+                            <h1 style="color: white">OSTEO 3D</h1>
                         </div>
                     </div>
-
-
-        </div>
-
-        <div class="modal fade" id="visualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static">
-            <div class="modal-dialog primary" role="document">
-                <div class="modal-content">
-                    <form id="modal1" method="post" class="form-horizontal">
-                        <div class="modal-header">
-                            <h4 class="modal-title text-center">Crear Grupo</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                 aria-hidden="true">&times;</span></button>
-
+                    <div class="float-right">
+                        <div class="site-logo">
+                            <a type="button" href="/login" class="btn btn-primary btn-outline-white py-2 px-6">Iniciar
+                                sesión</a>
                         </div>
-                        <div class="modal-body">
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Codigo</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Nombre</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Materia</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Cantidad</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="submit" id="actualizar" class="btn btn-canc-edit btn-primary" data-dismiss="modal">Guardar</button>
-                                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
-                            </div>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="float-right">
+                        <div class="site-logo">
+                            <a type="button" href="/registro"
+                                class="btn btn-primary btn-outline-white py-2 px-6">Registrar</a>
                         </div>
-                    </form>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </div>
 
+        </header>
+
+        <div class="site-section">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h2 class="heading-29190" style="text-align:center ">Software Educativo de Osteologia</h2>
+                    <a href="https://www.youtube.com/watch?v=Qr4XazpMCEg" data-fancybox class="btn-video_38929">
+                        <span><span class="icon-play"></span></span>
+                        <img src="../files/bower_components/inicio/images/gato.jpg" alt="Image" class="img-fluid">
+                    </a>
                 </div>
             </div>
         </div>
+        <footer class="card-footer" style="text-align:center; background-color: rgb(58, 66, 63)">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <br>
+                        <br>
+                        <img src="../files/bower_components/inicio/images/Logo3.png" alt="Image" class="img-fluid">
+                    </div>
+                    <div class="col-lg-5">
+                        <h2 class="footer-heading mb-3" style="color: blanchedalmond">Master Code</h2>
+                        <p style="color: blanchedalmond">Master Code SAS ofrece servicios a la comunidad, con la
+                            finalidad de facilitar, optimizar y ahorrar tiempo en actividades y procesos cotidianos.
+                        </p>
+                    </div>
+                    <div class="col-lg-4 ml-auto">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h2 class="footer-heading mb-4" style="color: blanchedalmond">Contactos</h2>
+                                <div class="social_29128 white mb-5">
+                                    <a href="#"><span style="color: rgb(26, 24, 153)" class="icon-facebook"></span></a>
+                                    <a href="#"><span style="color: rgb(150, 20, 117)"
+                                            class="icon-instagram"></span></a>
+                                    <a href="#"><span style="color: rgb(16, 111, 189)" class="icon-twitter"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-top pt-2">
+                        <p style="color: blanchedalmond">
+                            Copyright &copy;
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>. Todos Los Derechos Reservados por <a href="https://mastercode.com.co/ "
+                                target="_blank " style="color: red">Master Code</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
     </div>
-    <% include ./partials/js.html %>
 
-        <script>
-            $('#idRunTheCode').click(function() {
-                $("#visualizar").modal('toggle');
-            });
-        </script>
+    <script src="../files/bower_components/inicio/js/jquery-3.3.1.min.js "></script>        
+    <script src="../files/bower_components/inicio/js/jquery.fancybox.min.js "></script>
+
+    <script src="../files/bower_components/inicio/js/main.js "></script>
+
 </body>
 
 </html>

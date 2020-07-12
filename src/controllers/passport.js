@@ -1,13 +1,25 @@
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
- 
+
 const pool = require('../database/database');
 const helpers = require('./helper');
 
+// ------------ Variables de Usuario Estaticas -------------
+
+let Persona = {
+    Id_Entidad: '',
+    Nombre_Entidad: '',
+    Nit_Entidad: '',
+    Tipo_Entidad: '',
+    Id_Empleado: '',
+    Nombre_Usuario: '',
+    Tipo_Usuario: ''
+};
+
 // ------------- Iniciar Sesion ------------
-passport.use('local.signin', new Strategy({ 
+passport.use('local.signin', new Strategy({
     usernameField: 'nombre',
-    passwordField: 'contrase', 
+    passwordField: 'contrase',
     passReqToCallback: true
 }, async (req, nombre, contrase, done) => {
     const row = await pool.query('select * from usuario where nombre = ?', [nombre]);
@@ -32,18 +44,20 @@ passport.use('local.signin', new Strategy({
 
 // -------- Registrar un SuperUsuario ------------
 passport.use('local.signup', new Strategy({
-    usernameField: 'nombre',
-    passwordField: 'contrase',
+    usernameField: 'Usuario',
+    passwordField: 'Password',
     passReqToCallback: true
-}, async (req, nombre, contrase, done) => {
+}, async (req, Usuario, Password, done) => {
     let newUser = {
-        nombre,
-        contrase
+        Usuario,
+        Password
     };
     console.log(newUser);
-    newUser.contrase = await helpers.encryptPassword(contrase);
-    //Guardamos Datos
-    const result = await pool.query('insert into usuario set ?', newUser);
+    newUser.Password = await helpers.encryptPassword(Password);
+    //Guardamos Datos    
+    const consulta = "INSERT INTO usuario (Id_Usuario, Usuario, Password, Persona_Id_Persona) values (default,'" + newUser.Usuario + "','" + newUser.Password + "', '1');";
+    console.log(consulta)
+    const result = await pool.query(consulta);
     newUser.id = result.insertId;
     console.log(newUser.id)
     return done(null, newUser);
@@ -51,7 +65,8 @@ passport.use('local.signup', new Strategy({
 
 // ------ Codificar el Usuario --------
 passport.serializeUser((user, done) => {
-    done(null, user.id_usuario);
+    console.log(user);
+    done(null, user.id);
 });
 
 // ----- Descodificar el usuario ------

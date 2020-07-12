@@ -5,17 +5,32 @@ const pool = require('../database/database');
 const fileUpload = require('express-fileupload');
 const passport = require('passport');
 
+// ---------- Controladores --------------
+const controlValidate = require('../controllers/validate');
+
+// --------- Seccion Protegida de Creacion Usuario ----------------
+
+rutas.get('/admin/creacion', (req, res) => {
+    res.render('creacion.html');
+});
+
+rutas.post('/add', passport.authenticate('local.signup', {
+    successRedirect: '/admin/creacion',
+    failureRedirect: '/',
+    failureFlash: true
+}));
+
 // ---- Carga Vista Principal ------
 rutas.get('/', (req, res) => {
+    res.render('index.html');
+});
+
+rutas.get('/login', (req, res) => {
     res.render('login.html');
 });
 
 rutas.get('/recovery', (req, res) => {
     res.render('recovery.html')
-});
-
-rutas.get('/admin/creacion', (req, res) => {
-    res.render('creacion.html');
 });
 
 rutas.get('/Especies', (req, res) => {
@@ -32,14 +47,12 @@ rutas.get('/Caracteristica', (req, res) => {
 rutas.get('/perfil', (req, res) => {
     res.render('perfil.html');
 });
-rutas.get('/login', (req, res) => {
-    res.render('index.html');
-});
+
 rutas.get('/registro', (req, res) => {
     res.render('registro.html');
 });
 rutas.get('/inicio', (req, res) => {
-    res.render('publica.html');
+    res.render('inicio.html');
 });
 rutas.get('/cuestionario', (req, res) => {
     res.render('cuestionario.html');

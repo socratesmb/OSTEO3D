@@ -59,7 +59,10 @@ INSERT INTO `registro_pe` (`Id_Registro_PE`, `fecha`, `estado`, `Persona_Id_Pers
 (default, '2020-06-03 11:11:11', 'ACTIVO', 1, 1, 1);
 
 
-DROP TABLE IF EXISTS `ConsultarMenu`;
+CREATE OR REPLACE VIEW Consultar_Entidad AS select entidad.Id_Entidad as ID_Entidad, tipo_entidad.Nombre as Tipo_Entidad, tipo_entidad.No_Usuarios as No_Usuarios, entidad.Nombre as Nombre_Entidad, entidad.Nit as Nit, entidad.Encargado as Encargado, entidad.Telefono as Telefono, entidad.Direccion as Direccion, entidad.Correo_Electronico as Correo, entidad.Tiempo_Pago as T_Pago, entidad.Estado as Estado
+from entidad
+inner join tipo_entidad on tipo_entidad.Id_Tipo_Entidad = entidad.Tipo_Entidad_Id_Tipo_Entidad
+
 
 CREATE OR REPLACE VIEW `Menu_Usuarios` AS select Entidad.Id_Entidad AS Id_Entidad, persona.Id_Persona AS Id_Persona, rol.Nombre AS Nombre_Rol, Menu.Nombre AS Menu, Menu.Icono AS Icono_Menu, Menu.Ruta AS Rutas_Menu 
 from persona 
@@ -69,3 +72,4 @@ inner join rol on rol.Id_Rol = registro_pe.Rol_Id_Rol
 inner join permisos on permisos.Rol_Id_Rol = rol.Id_Rol
 inner join menu on menu.Id_Menu = rol.Id_Rol
 ORDER BY Menu='Inicio' desc, Menu;
+
