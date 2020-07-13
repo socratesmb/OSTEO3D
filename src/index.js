@@ -94,23 +94,6 @@ function errorHandler(err, req, res, next) {
     res.redirect('/');
 }
 
-// Codificar el Usuario
-passport.serializeUser((user, done) => {
-    done(null, user);
-});
-
-// Descodificar el usuario
-passport.deserializeUser(async (id, done) => {
-    await pool.query('select * from login where id_login = ?', [id.id_login], (err, user) => {
-        if (err) {
-            console.log(err);
-            done(err);
-        } else {
-            done(err, user);
-        }
-    });
-});
-
 // Archivos estaticos
 app.use(express.static(path.join(__dirname, 'public')));
 

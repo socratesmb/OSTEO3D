@@ -11,27 +11,49 @@ let Persona = {
     Nombre_Entidad: '',
     Nit_Entidad: '',
     Tipo_Entidad: '',
-    Id_Empleado: '',
+    Id_Usuario: '',
     Nombre_Usuario: '',
     Tipo_Usuario: ''
 };
 
 // ------------- Iniciar Sesion ------------
 passport.use('local.signin', new Strategy({
-    usernameField: 'nombre',
-    passwordField: 'contrase',
+    usernameField: 'Usuario',
+    passwordField: 'Password',
     passReqToCallback: true
-}, async (req, nombre, contrase, done) => {
-    const row = await pool.query('select * from usuario where nombre = ?', [nombre]);
+}, async (req, Usuario, Password, done) => {
+    const row = await pool.query('select * from usuario where usuario.Usuario = ?', [Usuario]);
+    console.log("Resultado de Busqueda");
     console.log(row.length);
     if (row.length > 0) {
         const user = row[0];
+        console.log("Datos de Consulta");
         console.log(user)
         const validaUser = await helpers.macthPassword(contrase, user.contrase);
-        console.log(validaUser)
         if (validaUser) {
             console.log('entro')
-            done(null, user);
+            await pool.query("select * from variables_usuario where Id_Usuario = ?", [user.Id_Usuario], async (err, result) => {
+                if (err) {
+                    console.log(err);
+                    done(null, false);
+                } else {
+                    if (result.length < 1) {
+                        console.log("no encontro nada");
+                    } else {
+                        Persona = {
+                            Id_Entidad: result[0].Id_Entidad,
+                            Nombre_Entidad: result[0].Nombre_Entidad,
+                            Nit_Entidad: result[0].Nit_Entidad,
+                            Tipo_Entidad: result[0].Tipo_Entidad,
+                            Id_Usuario: result[0].Id_Empleado,
+                            Nombre_Usuario: result[0].Nombre_Usuario,
+                            Tipo_Usuario: result[0].Tipo_Usuario
+                        };
+                        req.session.datos = Persona;
+                        done(null, user);
+                    }
+                }
+            });
         } else {
             console.log('no entro')
             done(null, false);
@@ -71,6 +93,19 @@ passport.serializeUser((user, done) => {
 
 // ----- Descodificar el usuario ------
 passport.deserializeUser(async (id, done) => {
-    const rows = await pool.query('select * from usuario where id_usuario = ?', [id]);
+    const rows = await pool.query('select * from usuario where Id_Usuario = ?', [id]);
+    console.log("Esta deserealizando un usuario");
+    console.log(rows)
     done(null, rows[0]);
 });
+
+/*passport.deserializeUser(async (id, done) => {
+    await pool.query('select * from login where id_login = ?', [id.id_login], (err, user) => {
+        if (err) {
+            console.log(err);
+            done(err);
+        } else {
+            done(err, user);
+        }
+    });
+});*/

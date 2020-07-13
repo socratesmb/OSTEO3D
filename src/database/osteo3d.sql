@@ -73,3 +73,12 @@ inner join permisos on permisos.Rol_Id_Rol = rol.Id_Rol
 inner join menu on menu.Id_Menu = rol.Id_Rol
 ORDER BY Menu='Inicio' desc, Menu;
 
+create or replace view `VariablesUsuario` as 
+select usuario.Id_Usuario as Id_Usuario ,entidad.Id_Entidad as Id_entidad, entidad.Nombre as Nombre_Entidad, entidad.Nit as Nit_Entidad, tipo_entidad.Nombre as Tipo_Entidad, persona.Id_Persona as Id_Empleado, concat(persona.Nombre, ' ', persona.Apellido) as Nombre_Usuario, rol.Nombre as Tipo_Usuario
+from usuario
+inner join persona on persona.Id_Persona = usuario.Persona_Id_Persona 
+inner join registro_pe on registro_pe.Persona_Id_Persona = persona.Id_Persona 
+inner join entidad on entidad.Id_Entidad = registro_pe.Entidad_Id_Entidad 
+inner join tipo_entidad on tipo_entidad.Id_Tipo_Entidad = entidad.Tipo_Entidad_Id_Tipo_Entidad
+inner join rol on rol.Id_Rol = registro_pe.Rol_Id_Rol 
+where registro_pe.Estado = 'ACTIVO' and entidad.Estado = 'ACTIVO'

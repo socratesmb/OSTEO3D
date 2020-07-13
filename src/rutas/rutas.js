@@ -6,7 +6,12 @@ const fileUpload = require('express-fileupload');
 const passport = require('passport');
 
 // ---------- Controladores --------------
-const controlValidate = require('../controllers/validate');
+const controlValidacion = require('../controllers/validate');
+const controlSuperAdmin = require('../models/ModeloSuperAdmin');
+const controlAdmin = require('../models/ModeloAdministrador');
+const controlDocen = require('../models/ModeloDocente');
+const controlEstud = require('../models/ModeloEstudiante');
+const controlGeneral = require('../models/ModeloGeneral');
 
 // --------- Seccion Protegida de Creacion Usuario ----------------
 
@@ -25,13 +30,34 @@ rutas.get('/', (req, res) => {
     res.render('index.html');
 });
 
+// ----- Cargar Vista de Login, Inicio de Sesion --------
 rutas.get('/login', (req, res) => {
     res.render('login.html');
 });
 
+rutas.post('/signin', controlValidacion.inicio);
+
+// ------ Cargar vista de Recuperar Contraseña ---------
 rutas.get('/recovery', (req, res) => {
     res.render('recovery.html')
 });
+
+// ----- Cargar vista de Registro ------------
+rutas.get('/registro', (req, res) => {
+    res.render('registro.html');
+});
+
+// ------- Seccion de Super Administrador -------------
+
+// ------- Seccion de Administrador -------------
+
+// ------- Seccion de Docente --------------
+
+// ------- Seccion de Estudiante --------------
+
+// ------- Seccion Vistas Generales
+
+
 
 rutas.get('/Especies', (req, res) => {
     res.render('especies.html');
@@ -48,9 +74,7 @@ rutas.get('/perfil', (req, res) => {
     res.render('perfil.html');
 });
 
-rutas.get('/registro', (req, res) => {
-    res.render('registro.html');
-});
+
 rutas.get('/inicio', (req, res) => {
     res.render('inicio.html');
 });
