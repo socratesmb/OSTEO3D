@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Perfil</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <% include ../Partials/style.html%>
+    <link rel="stylesheet" href="..\files\bower_components\carrusel\css\styles.css">
+</head>
+
+<body themebg-pattern="pattern4">
+    <div id="pcoded" class="pcoded iscollapsed" nav-type="st6" theme-layout="vertical" vertical-placement="left"
+        vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink"
+        vnavigation-view="view1" fream-type="theme1" sidebar-img="false" sidebar-img-type="img1" layout-type="light">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <% include ../Partials/navbar.html%>
+            <% include ../Partials/slider.html%>
+            <div class="pcoded-main-container" style="margin-top: 56px;">
+                <div class="pcoded-wrapper">
+
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="card">
+                                                    <div class="card-block">
+                                                        <div class="box box-primary">
+                                                            <div class="box-body box-profile">
+                                                                <p style="text-align: center;">
+                                                                    <img class="profile-user-img img-responsive img-circle" src="<%=Perfil.Imagen%>" alt="User profile picture" width="150px" height="150px">
+                                                                </p>                                                                
+                                                                <ul class="list-group list-group-unbordered">
+                                                                    <li class="list-group-item">
+                                                                        <b>Nombre</b>
+                                                                        <a class="pull-right">
+                                                                            <%=Perfil.Nombre%>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="list-group-item">
+                                                                        <b>Apellido</b>
+                                                                        <a class="pull-right">
+                                                                            <%=Perfil.Apellido%>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="list-group-item">
+                                                                        <b>Numero Documento</b>
+                                                                        <a class="pull-right">
+                                                                            <%=Perfil.No_Documento%>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="list-group-item">
+                                                                        <b>Correo</b>
+                                                                        <a class="pull-right">
+                                                                            <%=Perfil.Correo%>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="list-group-item">
+                                                                        <b>Usuario</b>
+                                                                        <a class="pull-right">
+                                                                            <%=Perfil.Usuario%>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="list-group-item">
+                                                                        <b>Entidad</b>
+                                                                        <a class="pull-right">
+                                                                            <%=Perfil.Entidad%>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="list-group-item">
+                                                                        <b>Tipo Entidad</b>
+                                                                        <a class="pull-right">
+                                                                            <%=Perfil.Tipo_Entidad%>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="list-group-item">
+                                                                        <b>Tipo Usuario</b>
+                                                                        <a class="pull-right">
+                                                                            <%=Perfil.Tipo_Usuario%>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card">
+                                                    <ul class="nav nav-tabs md-tabs " role="tablist">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" data-toggle="tab" href="#info"
+                                                                role="tab"><i class="fa fa-user"></i> Cambio de Datos
+                                                            </a>
+                                                            <div class="slide"></div>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-toggle="tab" href="#password"
+                                                                role="tab"><i class="fa fa-lock"></i> Cambio de
+                                                                Contraseña</a>
+                                                            <div class="slide"></div>
+                                                        </li>
+                                                    </ul>
+                                                    <!-- Tab panes -->
+                                                    <div class="tab-content card-block">
+                                                        <div class="tab-pane active" id="info" role="tabpanel">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label> Nombre</label>
+                                                                        <input type="text" name="NombrePerfil"
+                                                                            id="NombrePerfil" class="form-control"
+                                                                            value="<%=Perfil.Nombre%>">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label> Apellido</label>
+                                                                        <input type="text" name="ApellidoPerfil"
+                                                                            id="ApellidoPerfil" class="form-control"
+                                                                            value="<%=Perfil.Apellido%>">
+                                                                    </div>
+                                                                </div>                                                              
+
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label> Correo </label>
+                                                                        <input type="email" name="CorreoPerfil"
+                                                                            id="CorreoPerfil" class="form-control"
+                                                                            value="<%=Perfil.Correo%>">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12"
+                                                                    style="text-align: center; margin-top: -30px; margin-bottom: 20px;">
+                                                                    <div class="content">
+                                                                        <p> <img class="profile-user-img img-responsive img-circle"
+                                                                                name="img2" id="img2" src=""
+                                                                                style="border:solid 5px, rgb(206, 21, 21)" />
+                                                                        </p>
+                                                                        <div
+                                                                            style="display: flex; justify-content: center">
+                                                                            <div
+                                                                                style=" display: flex; align-items: center;">
+                                                                                <input type="hidden"
+                                                                                    name="ruta_guardada" value="">
+                                                                                <input type="hidden" id="ruta_temporal"
+                                                                                    name="ruta_temporal" value="">
+                                                                                <input type="file" name="archivo"
+                                                                                    id="file" class="btn btn-success">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-4"> </div>
+                                                                <div class="col-md-4">
+                                                                    <button class="btn btn-mat btn-success">Guardar
+                                                                        Cambios</button>
+                                                                </div>
+                                                                <div class="col-md-4"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane" id="password" role="tabpanel">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label>Usuario</label>
+                                                                        <input type="text" name="UsuarioPerfil"
+                                                                            id="UsuarioPerfil" class="form-control"
+                                                                            value="<%=Perfil.Usuario%>" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label>Contraseña</label>
+                                                                        <input type="password" name="ContraseñaPerfil"
+                                                                            id="ContraseñaPerfil" class="form-control"
+                                                                            placeholder="Contraseña Actual"
+                                                                            onkeyup="HabilitarCampos()">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label>Nueva Contraseña</label>
+                                                                        <input type="password" name="ContraNuevaPerfil"
+                                                                            id="ContraNuevaPerfil" class="form-control"
+                                                                            placeholder="Nueva Contraseña"
+                                                                            onkeyup="HabilitarCampos2()">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label>Confirmar Contraseña</label>
+                                                                        <input type="password"
+                                                                            name="ConfirContraseñaPerfil"
+                                                                            id="ConfirContraseñaPerfil"
+                                                                            class="form-control"
+                                                                            placeholder="Repita la Contraseña"
+                                                                            onkeyup="VerificarCampos()">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4"> </div>
+                                                                <div class="col-md-4">
+                                                                    <button class="btn btn-mat btn-success">Modificar
+                                                                        Contraseña</button>
+                                                                </div>
+                                                                <div class="col-md-4"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <% include ../Partials/js.html%>
+
+
+
+</body>
+
+</html>

@@ -8,8 +8,7 @@ const model = {};
 model.inicio = async (req, res) => {
     datos = req.session.datos;
     menu = req.session.menu;
-    console.log(datos)    
-    
+        
     res.render('Generales/inicio.html', { datos, menu });
 };
 
