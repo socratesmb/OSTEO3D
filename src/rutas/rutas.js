@@ -30,6 +30,9 @@ rutas.get('/', (req, res) => {
     res.render('index.html');
 });
 
+// --------- Modeleo para cerrar sesion y salir ---------
+rutas.get('/salir', controlValidacion.salir);
+
 // ----- Cargar Vista de Login, Inicio de Sesion --------
 rutas.get('/login', (req, res) => {
     res.render('login.html');
