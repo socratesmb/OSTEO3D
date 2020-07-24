@@ -54,8 +54,8 @@ rutas.get('/registro', (req, res) => {
 
 rutas.get('/supadmin/home', controlSuperAdmin.inicio);
 // ----- Cargar vista de Registro de Entidad ------------
-rutas.get('/entidad', (req, res) => {
-    res.render('Entidad.html');
+rutas.get('/entidades', (req, res) => {
+    res.render('Entidades.html');
 });
 // ------- Seccion de Administrador -------------
 
