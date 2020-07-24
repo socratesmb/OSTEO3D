@@ -79,7 +79,7 @@ function error404(req, res, next) {
 function logErrors(err, req, res, next) {
     console.error(err.stack, 'asd');
     next(err);
-}
+} 
 
 function clientErrorHandler(err, req, res, next) {
     if (req.xhr) {

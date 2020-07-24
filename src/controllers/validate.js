@@ -28,19 +28,19 @@ model.inicio = (req, res, next) => {
                     if (err) {
                         return next(err);
                     } else {
-                        req.session.menu = await pool.query("select * from menu_usuarios where menu_usuarios.Id_Entidad = " + req.session.Id_Entidad + " and menu_usuarios.Id_Persona = " + req.session.Id_Usuario);
+                        req.session.menu = await pool.query("select * from menu_usuarios where menu_usuarios.Id_Entidad = " + req.session.datos.Id_Entidad + " and menu_usuarios.Id_Persona = " + req.session.datos.Id_Usuario);
                         console.log(req.session.menu);
 
-                        if (user.Tipo_Usuario == 'SUPER ADMINISTRADOR') {
+                        if (req.session.datos.Tipo_Usuario == 'SUPER ADMINISTRADOR') {
                             return res.redirect('/supadmin/home');
 
-                        } if (user.Tipo_Usuario == 'ADMINISTRADOR') {
+                        } if (req.session.datos.Tipo_Usuario == 'ADMINISTRADOR') {
                             return res.redirect('/admin/inicio');
-                            
-                        } if (user.Tipo_Usuario == 'DOCENTE') {
+
+                        } if (req.session.datos.Tipo_Usuario == 'DOCENTE') {
                             return res.redirect('/models/inicio');
-                            
-                        } if (user.Tipo_Usuario = 'ESTUDIANTE') {
+
+                        } if (req.session.datos.Tipo_Usuario = 'ESTUDIANTE') {
                             return res.redirect('/models/inicio');
 
                         }

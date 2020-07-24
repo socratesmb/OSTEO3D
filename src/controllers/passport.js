@@ -29,7 +29,7 @@ passport.use('local.signin', new Strategy({
         const user = row[0];
         console.log("Datos de Consulta");
         console.log(user)
-        const validaUser = await helpers.macthPassword(contrase, user.contrase);
+        const validaUser = await helpers.macthPassword(Password, user.Password);
         if (validaUser) {
             console.log('entro')
             await pool.query("select * from variables_usuario where Id_Usuario = ?", [user.Id_Usuario], async (err, result) => {
@@ -48,8 +48,8 @@ passport.use('local.signin', new Strategy({
                             Id_Usuario: result[0].Id_Empleado,
                             Nombre_Usuario: result[0].Nombre_Usuario,
                             Tipo_Usuario: result[0].Tipo_Usuario
-                        };
-                        req.session.datos = Persona;
+                        };                       
+                        req.session.datos = Persona;                        
                         done(null, user);
                     }
                 }
@@ -86,26 +86,17 @@ passport.use('local.signup', new Strategy({
 }));
 
 // ------ Codificar el Usuario --------
-passport.serializeUser((user, done) => {
-    console.log(user);
-    done(null, user.id);
+passport.serializeUser((user, done) => {    
+    done(null, user);
 });
 
 // ----- Descodificar el usuario ------
-passport.deserializeUser(async (id, done) => {
-    const rows = await pool.query('select * from usuario where Id_Usuario = ?', [id]);
-    console.log("Esta deserealizando un usuario");
-    console.log(rows)
-    done(null, rows[0]);
-});
-
-/*passport.deserializeUser(async (id, done) => {
-    await pool.query('select * from login where id_login = ?', [id.id_login], (err, user) => {
-        if (err) {
+passport.deserializeUser(async (id, done) => {      
+    await pool.query('select * from usuario where Id_Usuario = ?', [id.id], (err, result) => {
+        if (err) {            
             console.log(err);
-            done(err);
-        } else {
-            done(err, user);
+        } else {            
+            done(null, result);
         }
     });
-});*/
+});
