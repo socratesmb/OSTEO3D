@@ -6,7 +6,11 @@ const model = {};
 
 //-------- Modelo para Cargar la vista principal del super usuario ----------------
 model.inicio = async (req, res) => {
-    res.render('Generales/inicio.html');
+    datos = req.session.datos;
+    menu = req.session.menu;
+    console.log(datos)    
+    
+    res.render('Generales/inicio.html', { datos, menu });
 };
 
 module.exports = model;

@@ -62,7 +62,7 @@ rutas.get('/supadmin/home', controlSuperAdmin.inicio);
 
 // ------- Seccion Vistas Generales
 
-
+rutas.get('/perfil', controlGeneral.perfil);
 
 rutas.get('/Especies', (req, res) => {
     res.render('especies.html');
@@ -75,9 +75,7 @@ rutas.get('/Grupos', (req, res) => {
 rutas.get('/Caracteristica', (req, res) => {
     res.render('Caracteristicas_especie.html');
 });
-rutas.get('/perfil', (req, res) => {
-    res.render('perfil.html');
-});
+
 
 
 rutas.get('/inicio', (req, res) => {
