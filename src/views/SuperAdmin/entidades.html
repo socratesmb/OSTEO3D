@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <% include ../Partials/icono.html%>
+    <% include ../Partials/style.html%>
+</head>
+
+<body themebg-pattern="pattern4">
+    <div id="pcoded" class="pcoded iscollapsed" nav-type="st6" theme-layout="vertical" vertical-placement="left"
+        vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink"
+        vnavigation-view="view1" fream-type="theme1" sidebar-img="false" sidebar-img-type="img1" layout-type="light">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <% include ../Partials/navbar.html%>
+            <% include ../Partials/slider.html%>
+            <div class="pcoded-main-container" style="margin-top: 56px;">
+                <div class="pcoded-wrapper">
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <div class="page-body">
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <form action="/SuperAdmin/Regis_Entidad" method="post">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label>Nombre de la Entidad</label>
+                                                            <input type="text" style="border-radius:8px;" name="NombreEntidad" id="NombreEntidad"
+                                                                required class="form-control"
+                                                                title="Nombre de la Institucion o Empresa">
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <label>Tipo de Entidad</label>
+                                                            <select class="form-control" name="TipoEntidad" id="TipoEntidad"
+                                                                style="border-radius:8px;" required
+                                                                title="Que Tipo de Empresa Es">
+                                                                <option value="">Seleccione Opción</option>
+                                                                <option value="1">COLEGIO</option>
+                                                                <option value="2">UNIVERSIDAD</option>
+                                                                <option value="3">EMPRESA PRIVADA</option>
+                                                                <option value="4">EMPRESA PUBLICA</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <label>Nit</label>
+                                                            <input type="text" style="border-radius:8px;" name="NitEntidad" id="NitEntidad"
+                                                                required class="form-control"
+                                                                title="Codigo de Identificacion Unico">
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <label>Teléfono</label>
+                                                            <input type="number" style="border-radius:8px;" name="TelefonoEntidad"
+                                                                id="TelefonoEntidad" required class="form-control"
+                                                                title="Numero para Contacto">
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <label>Dirección</label>
+                                                            <input type="text" style="border-radius:8px;" name="DireccionEntidad" id="DireccionEntidad"
+                                                                required class="form-control"
+                                                                title="Ubicacion donde Reside">
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <label>Correo Electrónico</label>
+                                                            <input type="email" style="border-radius:8px;" name="CorreoEntidad" id="CorreoEntidad"
+                                                                required class="form-control" title="Correo de Contato">
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <label>Nombre de Contacto</label>
+                                                            <input type="text" style="border-radius:8px;" name="NombreContacto" id="NombreContacto"
+                                                                required class="form-control" title="Nombre Completo">
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <label>Identificacion de Contacto</label>
+                                                            <input type="number" style="border-radius:8px;" name="IdContacto"
+                                                                id="IdContacto" required class="form-control"
+                                                                title="Cedula de Ciudadania Valida">
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <label>Plan de Pago</label>
+                                                            <select class="form-control" name="PlanPago" id="PlanPago"
+                                                                style="border-radius:8px;" required
+                                                                title="Tiempo de Pago Contratado">
+                                                                <option value="">Seleccione Opción</option>
+                                                                <option value="1">1 Mes</option>
+                                                                <option value="6">6 Meses</option>
+                                                                <option value="12">12 Meses</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <label>Cantidad de Usuario</label>
+                                                            <input type="number" style="border-radius:8px;" name="NoUsuarios"
+                                                                id="NoUsuarios" required class="form-control"
+                                                                title="Numero de Usuarios Adicionales">
+                                                        </div>
+
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-md-12" style="text-align: center;">
+                                                            <button class="btn btn-mat btn-success" type="submit">Registrar
+                                                                Entidad</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include ../Partials/js.html%>
+</body>
+
+</html>

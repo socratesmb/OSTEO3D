@@ -82,3 +82,27 @@ inner join entidad on entidad.Id_Entidad = registro_pe.Entidad_Id_Entidad
 inner join tipo_entidad on tipo_entidad.Id_Tipo_Entidad = entidad.Tipo_Entidad_Id_Tipo_Entidad
 inner join rol on rol.Id_Rol = registro_pe.Rol_Id_Rol 
 where registro_pe.Estado = 'ACTIVO' and entidad.Estado = 'ACTIVO'
+
+create procedure Registro_Entidades(IN TipoEntidad INT, NombreEntidad VARCHAR(45), NitEntidad VARCHAR(45),TelefonoEntidad VARCHAR(25),DireccionEntidad VARCHAR(45),CorreoEntidad VARCHAR(45),PlanPago INT,NoUsuarios INT,NombreContacto VARCHAR(45),IdContacto VARCHAR(45),Contrasena VARCHAR(65)) 
+not deterministic
+begin 			
+	declare Id_Empresa int;
+	declare Id_Persona int;		
+
+	INSERT INTO `entidad` (`Id_Entidad`, `Tipo_Entidad_Id_Tipo_Entidad`, `Nombre`, `Nit`, `Encargado`, `Telefono`, `Direccion`, `Correo_Electronico`, `Tiempo_Pago`, `No_Usuarios`, `Estado`, `Logo_Entidad`) VALUES
+	(default, TipoEntidad, NombreEntidad, NitEntidad, NombreContacto, TelefonoEntidad, DireccionEntidad, CorreoEntidad, PlanPago, 150, 'ACTIVO', '/img/empresa.png');
+	
+	INSERT INTO `persona` (`Id_Persona`, `Identificacion_idIdentificacion`, `Identificacion`, `Nombre`, `Apellido`, `Correo_Electronico`, `Imagen`) VALUES
+	(default, 1, IdContacto, NombreContacto, 'Default', 'default@osteo3d.com', '/img/user.png');
+	
+	select entidad.Id_Entidad into Id_Empresa from entidad where entidad.Nit = NitEntidad;
+
+	select persona.Identificacion into Id_Persona from persona where persona.Identificacion = IdContacto;
+		
+	INSERT INTO `registro_pe` (`Id_Registro_PE`, `fecha`, `estado`, `Persona_Id_Persona`, `Entidad_Id_Entidad`, `Rol_Id_Rol`) VALUES
+	(default, now(), 'ACTIVO', Id_Persona, Id_Empresa, 2);
+	
+	INSERT INTO `usuario` (`Id_Usuario`, `Usuario`, `Password`, `Persona_Id_Persona`) VALUES
+	(default, IdContacto, Contrasena, Id_Persona);
+			
+end;
