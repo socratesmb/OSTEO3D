@@ -60,6 +60,8 @@ rutas.post('/SuperAdmin/Regis_Entidad', controlSuperAdmin.registro_entidades);
 
 // ------- Seccion de Administrador -------------
 
+rutas.get('/admin/inicio', controlAdmin.inicio);
+
 // ------- Seccion de Docente --------------
 
 // ------- Seccion de Estudiante --------------

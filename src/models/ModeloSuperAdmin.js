@@ -1,13 +1,18 @@
 const pool = require('../database/database');
 const helpers = require('../controllers/helper');
 const randomstring = require('randomstring');
+const correo = require('../models/ModeloCorreo');
 
 const model = {};
 
 // -------------- Seccion de Arreglos para Datos
 //#region 
 
-//-- Arreglo de datos Entidad
+let alerta = {
+    tipo: '',
+    mensaje: ''
+};
+
 let Entidad = {
     TipoEntidad: '',
     NombreEntidad: '',
@@ -29,7 +34,7 @@ model.inicio = async (req, res) => {
     datos = req.session.datos;
     menu = req.session.menu;
 
-    res.render('Generales/inicio.html', { datos, menu });
+    res.render('Generales/inicio.html', { datos, menu, alerta });
 };
 
 
@@ -40,10 +45,54 @@ model.entidades = async (req, res) => {
     datos = req.session.datos;
     menu = req.session.menu;
 
-    res.render('SuperAdmin/entidades.html', { datos, menu });
+    res.render('SuperAdmin/entidades.html', { datos, menu, alerta });
+
+    LimpiarVariables();
 };
 
 model.registro_entidades = async (req, res) => {
+
+    const valid = pool.query("select * from persona where persona.Identificacion = " + req.body.IdContacto);
+
+    if (valid.length > 0) {
+        alerta = {
+            tipo: 'inseguro',
+            mensaje: 'El Usuario Ya Esta Registrado En El Sistema, No Se Puede Registrar Un Usuario 2 Veces'
+        };
+        res.redirect('/supadmin/entidades');
+
+    } else {
+        var password = randomstring.generate(6);
+        var contrasena = await helpers.encryptPassword(password);
+        console.log('Contrase aleatoria:' + password);
+        console.log('Contrase cifrada:' + contrasena);
+
+        "call Registro_Entidades(2, 'Universidad', 9004020, '3002135060', 'calle roja', 'sberrio634@gmail.com', 6, 0, 'jairo rojas', '1004030', '$2a$10$VvT9hiUHoj9ReSiMApQUh.LIUXKOpCqTp1yCN8Hc5NacPCwPG4uJ6');"
+
+        await pool.query("call Registro_Entidades(" + req.body.TipoEntidad + ", '" + req.body.NombreEntidad + "', " + req.body.NitEntidad + ", '" + req.body.TelefonoEntidad + "', '" + req.body.DireccionEntidad + "', '" + req.body.CorreoEntidad + "', " + req.body.Tiempo_Pago + ", " + req.body.NoUsuarios + ", '" + req.body.NombreContacto + "', '" + req.body.IdContacto + "', '" + contrasena + "');", (err, result) => {
+            if (err) {
+                console.log(err)
+                alerta = {
+                    tipo: 'peligro',
+                    mensaje: err
+                };
+
+                res.redirect('/supadmin/entidades');
+            } else {
+                console.log('Resultado de la creacion de la entidad: ' + result);
+                correo.EnvioCorreo(req.body.CorreoEntidad, req.body.IdContacto, password);
+
+                alerta = {
+                    tipo: 'correcto',
+                    mensaje: 'Nueva Entidad Creada Correctamente'
+                };
+
+                res.redirect('/supadmin/entidades');
+            }
+        });
+
+    }
+
 
     Entidad = {
         TipoEntidad: req.body.TipoEntidad,
@@ -59,7 +108,20 @@ model.registro_entidades = async (req, res) => {
     };
 
     console.log(Entidad);
+
+
 }
 
+//#endregion
+
+//------- Funciones de Limpieza de Variables ----------
+//#region 
+function LimpiarVariables() {
+    alerta = {
+        tipo: '',
+        mensaje: ''
+    }
+
+}
 //#endregion
 module.exports = model;

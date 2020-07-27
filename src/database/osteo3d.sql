@@ -87,10 +87,13 @@ create procedure Registro_Entidades(IN TipoEntidad INT, NombreEntidad VARCHAR(45
 not deterministic
 begin 			
 	declare Id_Empresa int;
-	declare Id_Persona int;		
+	declare Id_Persona int;
+	declare Users int;	
+	
+	select tipo_entidad.No_Usuarios into Users from tipo_entidad where Id_Tipo_Entidad = TipoEntidad;
 
 	INSERT INTO `entidad` (`Id_Entidad`, `Tipo_Entidad_Id_Tipo_Entidad`, `Nombre`, `Nit`, `Encargado`, `Telefono`, `Direccion`, `Correo_Electronico`, `Tiempo_Pago`, `No_Usuarios`, `Estado`, `Logo_Entidad`) VALUES
-	(default, TipoEntidad, NombreEntidad, NitEntidad, NombreContacto, TelefonoEntidad, DireccionEntidad, CorreoEntidad, PlanPago, 150, 'ACTIVO', '/img/empresa.png');
+	(default, TipoEntidad, NombreEntidad, NitEntidad, NombreContacto, TelefonoEntidad, DireccionEntidad, CorreoEntidad, PlanPago, Users, 'ACTIVO', '/img/empresa.png');
 	
 	INSERT INTO `persona` (`Id_Persona`, `Identificacion_idIdentificacion`, `Identificacion`, `Nombre`, `Apellido`, `Correo_Electronico`, `Imagen`) VALUES
 	(default, 1, IdContacto, NombreContacto, 'Default', 'default@osteo3d.com', '/img/user.png');

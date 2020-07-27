@@ -34,15 +34,3 @@
         </script>
     </div>
     <%}%>
-        
-    <% if(alerta.tipo == "informativo") {%>
-    <div class="contenedor">
-        <script>
-            swal({
-                title: "Error",
-                text: "<%=alerta.mensaje %>",
-                icon: "error",
-            });
-        </script>
-    </div>
-    <%}%>
