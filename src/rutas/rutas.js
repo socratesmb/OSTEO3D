@@ -34,9 +34,7 @@ rutas.get('/', (req, res) => {
 rutas.get('/salir', controlValidacion.salir);
 
 // ----- Cargar Vista de Login, Inicio de Sesion --------
-rutas.get('/login', (req, res) => {
-    res.render('login.html');
-});
+rutas.get('/login', controlGeneral.login);
 
 rutas.post('/signin', controlValidacion.inicio);
 
@@ -66,10 +64,14 @@ rutas.get('/admin/inicio', controlAdmin.inicio);
 
 // ------- Seccion de Estudiante --------------
 
-// ------- Seccion Vistas Generales
+// ------- Seccion Vistas Generales -------------
 
 rutas.get('/perfil', controlGeneral.perfil);
 
+rutas.post('/actualizar_perfil', controlGeneral.perfil_update);
+
+rutas.post('/actualizar_password', controlGeneral.password_update);
+//-----------------------------------------
 rutas.get('/Especies', (req, res) => {
     res.render('especies.html');
 });

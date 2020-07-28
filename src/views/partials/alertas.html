@@ -22,7 +22,6 @@
     </div>
     <%}%>
         
-    
     <% if(alerta.tipo == "peligro") {%>
     <div class="contenedor">
         <script>
@@ -34,3 +33,14 @@
         </script>
     </div>
     <%}%>
+
+    <% if(alerta.tipo == "registro") {%>
+        <div class="contenedor">
+            <script>
+                swal({
+                    title: "<%=alerta.mensaje %>",                    
+                    icon: "success",
+                });
+            </script>
+        </div>
+        <%}%>

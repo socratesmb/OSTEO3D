@@ -83,6 +83,7 @@ inner join tipo_entidad on tipo_entidad.Id_Tipo_Entidad = entidad.Tipo_Entidad_I
 inner join rol on rol.Id_Rol = registro_pe.Rol_Id_Rol 
 where registro_pe.Estado = 'ACTIVO' and entidad.Estado = 'ACTIVO'
 
+
 create procedure Registro_Entidades(IN TipoEntidad INT, NombreEntidad VARCHAR(45), NitEntidad VARCHAR(45),TelefonoEntidad VARCHAR(25),DireccionEntidad VARCHAR(45),CorreoEntidad VARCHAR(45),PlanPago INT,NoUsuarios INT,NombreContacto VARCHAR(45),IdContacto VARCHAR(45),Contrasena VARCHAR(65)) 
 not deterministic
 begin 			
@@ -96,11 +97,11 @@ begin
 	(default, TipoEntidad, NombreEntidad, NitEntidad, NombreContacto, TelefonoEntidad, DireccionEntidad, CorreoEntidad, PlanPago, Users, 'ACTIVO', '/img/empresa.png');
 	
 	INSERT INTO `persona` (`Id_Persona`, `Identificacion_idIdentificacion`, `Identificacion`, `Nombre`, `Apellido`, `Correo_Electronico`, `Imagen`) VALUES
-	(default, 1, IdContacto, NombreContacto, 'Default', 'default@osteo3d.com', '/img/user.png');
+	(default, 1, IdContacto, NombreContacto, 'Default', 'default@osteo3d.com', '/files/assets/images/user.png');
 	
 	select entidad.Id_Entidad into Id_Empresa from entidad where entidad.Nit = NitEntidad;
 
-	select persona.Identificacion into Id_Persona from persona where persona.Identificacion = IdContacto;
+	select persona.Id_Persona into Id_Persona from persona where persona.Identificacion = IdContacto;
 		
 	INSERT INTO `registro_pe` (`Id_Registro_PE`, `fecha`, `estado`, `Persona_Id_Persona`, `Entidad_Id_Entidad`, `Rol_Id_Rol`) VALUES
 	(default, now(), 'ACTIVO', Id_Persona, Id_Empresa, 2);

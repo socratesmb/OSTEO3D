@@ -13,7 +13,8 @@ let Persona = {
     Tipo_Entidad: '',
     Id_Usuario: '',
     Nombre_Usuario: '',
-    Tipo_Usuario: ''
+    Tipo_Usuario: '',
+    Modificacion: ''
 };
 
 // ------------- Iniciar Sesion ------------
@@ -45,9 +46,11 @@ passport.use('local.signin', new Strategy({
                             Nombre_Entidad: result[0].Nombre_Entidad,
                             Nit_Entidad: result[0].Nit_Entidad,
                             Tipo_Entidad: result[0].Tipo_Entidad,
-                            Id_Usuario: result[0].Id_Empleado,
+                            Id_Empleado: result[0].Id_Empleado,
                             Nombre_Usuario: result[0].Nombre_Usuario,
-                            Tipo_Usuario: result[0].Tipo_Usuario
+                            Id_Usuario: result[0].Id_Usuario,
+                            Tipo_Usuario: result[0].Tipo_Usuario,
+                            Modificacion: result[0].Modificacion
                         };                       
                         req.session.datos = Persona;                        
                         done(null, user);
