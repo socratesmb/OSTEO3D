@@ -38,10 +38,6 @@ rutas.get('/login', controlGeneral.login);
 
 rutas.post('/signin', controlValidacion.inicio);
 
-// ----- Cargar vista de Registro ------------
-rutas.get('/registro', (req, res) => {
-    res.render('registro.html');
-});
 
 // ------- Seccion de Super Administrador -------------
 
@@ -59,6 +55,8 @@ rutas.get('/admin/inicio', controlAdmin.inicio);
 
 // ------- Seccion de Estudiante --------------
 
+rutas.get('/models/inicio', controlEstud.inicio);
+
 // ------- Seccion Vistas Generales -------------
 
 rutas.get('/perfil', controlGeneral.perfil);
@@ -70,6 +68,10 @@ rutas.post('/actualizar_password', controlGeneral.password_update);
 rutas.get('/recovery', controlGeneral.recovery);
 
 rutas.post('/send/recovery', controlGeneral.recuperar_password);
+
+rutas.get('/registro', controlGeneral.registro);
+
+rutas.post('/crear/usuario', controlGeneral.registro_usuario);
 //-----------------------------------------
 rutas.get('/Especies', (req, res) => {
     res.render('especies.html');

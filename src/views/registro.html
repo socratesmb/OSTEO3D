@@ -18,11 +18,12 @@
 </head>
 
 <body class="fix-menu" onload="HabilitarCampos()">
+    <% include ./Partials/alertas.html%>
     <section class="login-block">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12">
-                    <form class="md-float-material form-material">
+                <div class="col-md-12">
+                    <form class="md-float-material form-material" action="/crear/usuario" method="post">
                         <div class="text-center">
                             <img src="/login/STEO-3D.png" alt="logo.png">
                         </div>
@@ -36,9 +37,9 @@
                                 <div class="row m-b-30">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Nombre Completo</label>
+                                            <label>Nombre</label>
                                             <input type="text" name="NombreRegistro" id="NombreRegistro"
-                                                class="form-control" valuer="">
+                                                class="form-control">
                                         </div>
                                     </div>
 
@@ -46,19 +47,21 @@
                                         <div class="form-group">
                                             <label>Apellidos</label>
                                             <input type="text" name="ApellidoRegistro" id="ApellidoRegistro"
-                                                class="form-control" style="text-transform:uppercase" valuer="">
+                                                class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Tipo Documento</label>
-                                            <select class="form-control" id="TipoDocumento">
+                                            <select class="form-control" id="TipoDocumento" name="TipoDocumento">
                                                 <option>Seleccione una opción</option>
-                                                <option value="1">Cedula de Ciudadania</option>
-                                                <option value="2">Tarjeta de Identidad</option>
-                                                <option value="3">Regsitro Civil</option>
-                                                <option value="4">Otro Documento</option>
+                                                <% if(identi){%>
+                                                <%for(var i=0; i < identi.length; i++) {%>
+                                                <option value="<%=identi[i].Id_Identificacion%>">
+                                                    <%=identi[i].Tipo%></option>
+                                                <% }%>
+                                                <% }%>
                                             </select>
                                         </div>
                                     </div>
@@ -66,25 +69,31 @@
                                         <div class="form-group">
                                             <label>Numero Documento</label>
                                             <input type="number" name="NumeroDocumento" id="NumeroDocumento"
-                                                class="form-control" valuer="" pattern="[0-9]*">
+                                                class="form-control" pattern="[0-9]*">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Correo Electronico</label>
                                             <input type="email" name="CorreoPerfil" id="CorreoPerfil"
-                                                class="form-control" valuer="">
+                                                class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label> Teléfono </label>
-                                            <input type="number" name="TelefonoPerfil" id="TelefonoPerfil"
-                                                class="form-control" valuer="" pattern="[0-9]*">
+                                            <label>Entidad o Institución</label>
+                                            <select class="form-control" id="Entidad" name="Entidad">
+                                                <option>Seleccione una opción</option>
+                                                <% if(entidades){%>
+                                                <%for(var i=0; i < entidades.length; i++) {%>
+                                                <option value="<%=entidades[i].Id_Entidad%>">
+                                                    <%=entidades[i].Nombre_Entidad%></option>
+                                                <% }%>
+                                                <% }%>
+                                            </select>
                                         </div>
                                     </div>
-
 
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -103,21 +112,23 @@
                                                 placeholder="Confirmar Contraseña" onkeyup="VerificarCampos()">
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="row m-t-30">
                                     <div class=".col-md-12. m-auto">
-                                        <button
-                                            class="btn btn-primary btn-md text-center m-b-20"
+                                        <button class="btn btn-primary btn-md text-center m-b-20"
                                             id="BtnEditarContraseña" name="BtnEditarContraseña" type="submit">
                                             Registrarse
                                         </button>
                                     </div>
                                 </div>
-                                <p class="f-w-600 text-center"><a href="/login">Volver al Inicio</a></p>                               
+                                <p class="f-w-600 text-center"><a href="/login">Volver al Inicio</a></p>
                             </div>
                         </div>
+                    </form>
                 </div>
             </div>
+        </div>
 
     </section>
 

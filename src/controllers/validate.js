@@ -29,7 +29,7 @@ model.inicio = (req, res, next) => {
                         return next(err);
                     } else {
                         req.session.menu = await pool.query("select * from menu_usuarios where menu_usuarios.Id_Entidad = " + req.session.datos.Id_Entidad + " and menu_usuarios.Id_Persona = " + req.session.datos.Id_Usuario);
-
+                        console.log(req.session.menu)
                         if (req.session.datos.Modificacion == 0) {
                             return res.redirect('/perfil');                            
                         } else {

@@ -41,6 +41,13 @@ model.recovery = async (req, res) => {
     LimpiarVariables();
 };
 
+model.registro = async (req, res) => {
+    const entidades = await pool.query("select entidad.Id_Entidad as Id_Entidad, entidad.Nombre as Nombre_Entidad from entidad");
+    const identi = await pool.query("select * from identificacion where identificacion.Estado = 'ACTIVO'");
+
+    res.render('registro.html', { alerta, entidades, identi });
+};
+
 model.recuperar_password = async (req, res) => {
     console.log(req.body.email);
     console.log(req.body.identificacion);
@@ -75,6 +82,28 @@ model.recuperar_password = async (req, res) => {
         }
     });
 
+};
+
+model.registro_usuario = async (req, res) => {
+    var contrasena = await helpers.encryptPassword(req.body.ContraseñaRegistro);
+
+    await pool.query("call Registro_Usuario('" + req.body.NombreRegistro + "', '" + req.body.ApellidoRegistro + "', " + req.body.TipoDocumento + ", " + req.body.NumeroDocumento + ", '" + req.body.CorreoPerfil + "', " + req.body.Entidad + ", '" + contrasena + "')", async (err, result) => {
+        if (err) {
+            console.log(err)
+            alerta = {
+                tipo: 'peligro',
+                mensaje: 'Error al registrar el Usuario' + err
+            }
+            res.redirect('/registro');
+        } else {
+            correo.RegistroUsuario(req.body.CorreoPerfil, req.body.NumeroDocumento, req.body.ContraseñaRegistro);
+            alerta = {
+                tipo: 'correcto',
+                mensaje: 'El Usuario Ha Sido Creado, Por favor Revise Su Correo En Sección De Spam O No Deseados.'
+            }
+            res.redirect('/registro');
+        }
+    });
 };
 //#endregion
 

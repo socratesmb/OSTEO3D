@@ -67,7 +67,6 @@ model.registro_entidades = async (req, res) => {
         console.log('Contrase aleatoria:' + password);
         console.log('Contrase cifrada:' + contrasena);
 
-        "call Registro_Entidades(2, 'Universidad', 9004020, '3002135060', 'calle roja', 'sberrio634@gmail.com', 6, 0, 'jairo rojas', '1004030', '$2a$10$VvT9hiUHoj9ReSiMApQUh.LIUXKOpCqTp1yCN8Hc5NacPCwPG4uJ6');"
 
         await pool.query("call Registro_Entidades(" + req.body.TipoEntidad + ", '" + req.body.NombreEntidad + "', " + req.body.NitEntidad + ", '" + req.body.TelefonoEntidad + "', '" + req.body.DireccionEntidad + "', '" + req.body.CorreoEntidad + "', " + req.body.Tiempo_Pago + ", " + req.body.NoUsuarios + ", '" + req.body.NombreContacto + "', '" + req.body.IdContacto + "', '" + contrasena + "');", (err, result) => {
             if (err) {
