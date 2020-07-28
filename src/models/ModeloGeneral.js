@@ -2,6 +2,7 @@ const pool = require('../database/database');
 const mkdirp = require('mkdirp');
 const randomstring = require('randomstring');
 const helpers = require('../controllers/helper');
+const correo = require('../models/ModeloCorreo');
 
 const model = {};
 
@@ -34,6 +35,47 @@ model.login = async (req, res) => {
     res.render('login.html', { alerta });
     LimpiarVariables();
 };
+
+model.recovery = async (req, res) => {
+    res.render('recovery.html', { alerta });
+    LimpiarVariables();
+};
+
+model.recuperar_password = async (req, res) => {
+    console.log(req.body.email);
+    console.log(req.body.identificacion);
+
+    await pool.query("select persona.Correo_Electronico, usuario.Id_Usuario from persona inner join usuario on usuario.Persona_Id_Persona = persona.Id_Persona where persona.Correo_Electronico = '" + req.body.email + "' and persona.Identificacion = " + req.body.identificacion, async (err, result) => {
+        if (err) {
+            alerta = {
+                tipo: 'inseguro',
+                mensaje: 'El Usuario No Esta Registrado En Sistema',
+            }
+            res.redirect('/recovery');
+        } else {
+            console.log(result)
+            if (result[0].Correo_Electronico == req.body.email) {
+                var newpassword = randomstring.generate(6);
+                var contrasena = await helpers.encryptPassword(newpassword);
+
+                await pool.query("update usuario set usuario.Password = '" + contrasena + "' where usuario.Id_Usuario =" + result[0].Id_Usuario, async (erro, reulta) => {
+                    if (err) {
+                        console.log("Fallo de Modificacion" + err);
+                    } else {
+                        correo.PasswordCorreo(req.body.email, req.body.identificacion, newpassword);
+
+                        alerta = {
+                            tipo: 'correcto',
+                            mensaje: 'El Usuario y Contraseña Fue Enviado al Correo, Porfavor Revise en Spam o Correo No Deseado',
+                        }
+                        res.redirect('/recovery');
+                    }
+                });
+            }
+        }
+    });
+
+};
 //#endregion
 
 
@@ -44,7 +86,7 @@ model.perfil = async (req, res) => {
     datos = req.session.datos;
     menu = req.session.menu;
 
-    const mod = await pool.query("select persona.Modificacion from persona where persona.Id_Persona = " + datos.Id_Empleado);        
+    const mod = await pool.query("select persona.Modificacion from persona where persona.Id_Persona = " + datos.Id_Empleado);
     if (mod[0].Modificacion == 0) {
         console.log('Entro a la alerta')
         alerta = {
@@ -65,7 +107,7 @@ model.perfil = async (req, res) => {
         Tipo_Entidad: datos.Tipo_Entidad,
         Tipo_Usuario: datos.Tipo_Usuario,
         Imagen: consulta[0].Imagen
-    }    
+    }
 
     res.render('Generales/perfil.html', { datos, menu, Perfil, alerta });
     LimpiarVariables();
@@ -98,7 +140,7 @@ model.perfil_update = async (req, res) => {
 
 model.password_update = async (req, res) => {
     datos = req.session.datos;
-        
+
     await pool.query("select usuario.Password from usuario where usuario.Id_Usuario = " + datos.Id_Usuario, async (err, result) => {
         console.log(result)
         if (err) {
@@ -125,7 +167,7 @@ model.password_update = async (req, res) => {
                         alerta = {
                             tipo: 'correcto',
                             mensaje: 'Contraseña Modificada, Por Su Seguridad Por Favor Vuelva A Iniciar Sesión'
-                        }                        
+                        }
                         res.redirect('/perfil');
                     }
                 });

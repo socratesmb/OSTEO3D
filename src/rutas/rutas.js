@@ -38,11 +38,6 @@ rutas.get('/login', controlGeneral.login);
 
 rutas.post('/signin', controlValidacion.inicio);
 
-// ------ Cargar vista de Recuperar Contraseña ---------
-rutas.get('/recovery', (req, res) => {
-    res.render('recovery.html')
-});
-
 // ----- Cargar vista de Registro ------------
 rutas.get('/registro', (req, res) => {
     res.render('registro.html');
@@ -71,6 +66,10 @@ rutas.get('/perfil', controlGeneral.perfil);
 rutas.post('/actualizar_perfil', controlGeneral.perfil_update);
 
 rutas.post('/actualizar_password', controlGeneral.password_update);
+
+rutas.get('/recovery', controlGeneral.recovery);
+
+rutas.post('/send/recovery', controlGeneral.recuperar_password);
 //-----------------------------------------
 rutas.get('/Especies', (req, res) => {
     res.render('especies.html');
