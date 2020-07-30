@@ -45,8 +45,15 @@ rutas.get('/supadmin/home', controlSuperAdmin.inicio);
 
 rutas.get('/supadmin/entidades', controlSuperAdmin.entidades);
 
-rutas.post('/SuperAdmin/Regis_Entidad', controlSuperAdmin.registro_entidades);
+rutas.post('/supadmin/Regis_Entidad', controlSuperAdmin.registro_entidades);
 
+rutas.get('/supadmin/buscar_entidad/:Id_Entidad', controlSuperAdmin.buscar_entidad);
+
+rutas.post('/supadmin/actualizar_entidad', controlSuperAdmin.actualizar_entidad);
+
+rutas.get('/supadmin/bloquear_entidad/:Id_Entidad', controlSuperAdmin.desactivar_entidad);
+
+rutas.get('/supadmin/cancelar', controlSuperAdmin.cancelar_modificacion);
 // ------- Seccion de Administrador -------------
 
 rutas.get('/admin/inicio', controlAdmin.inicio);

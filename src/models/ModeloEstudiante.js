@@ -3,7 +3,7 @@ const helpers = require('../controllers/helper');
 
 const model = {};
 
-// -------------- Seccion de Arreglos para Datos
+// -------------- Seccion de Arreglos para Datos -----------------
 //#region 
 
 let alerta = {

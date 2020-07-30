@@ -29,7 +29,7 @@ let Perfil = {
 //#endregion
 
 
-//------------- Seccion de Login, Rgistro y Recuperacion de Password ---------------
+//------------- Seccion de Login, Registro y Recuperacion de Password ---------------
 //#region 
 model.login = async (req, res) => {
     res.render('login.html', { alerta });
