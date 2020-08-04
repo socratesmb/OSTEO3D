@@ -17,7 +17,7 @@ let Persona = {
     Modificacion: ''
 };
 
-// ------------- Iniciar Sesion ------------
+// ------------- Iniciar Sesion ------------ 
 passport.use('local.signin', new Strategy({
     usernameField: 'Usuario',
     passwordField: 'Password',

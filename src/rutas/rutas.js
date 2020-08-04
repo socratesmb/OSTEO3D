@@ -54,6 +54,26 @@ rutas.post('/supadmin/actualizar_entidad', controlSuperAdmin.actualizar_entidad)
 rutas.get('/supadmin/bloquear_entidad/:Id_Entidad', controlSuperAdmin.desactivar_entidad);
 
 rutas.get('/supadmin/cancelar', controlSuperAdmin.cancelar_modificacion);
+
+rutas.get('/supadmin/configuracion', controlSuperAdmin.configuracion);
+
+rutas.post('/supadmin/Registro_TEntidades', controlSuperAdmin.Guardar_Tipo_Entidad);
+
+rutas.get('/supadmin/buscar_tipo_entidad/:Id_Tipo_Entidad', controlSuperAdmin.Consultar_Tipo_Entidad);
+
+rutas.post('/supadmin/Actualizacion_TEntidades', controlSuperAdmin.Actualizar_Tipo_Entidad);
+
+rutas.get('/supadmin/bloquear_tipo_entidad/:Id_Tipo_Entidad', controlSuperAdmin.Desactivar_Tipo_Entidad);
+
+rutas.post('/supadmin/Registro_Identificacion', controlSuperAdmin.Guardar_Identificacion);
+
+rutas.get('/supadmin/buscar_identificacion/:Id_Identificacion', controlSuperAdmin.Consultar_Identificacion);
+
+rutas.post('/supadmin/Actualizacion_Identificacion', controlSuperAdmin.Actualizar_Identificacion);
+
+rutas.get('/supadmin/bloquear_identificacion/:Id_Identificacion', controlSuperAdmin.Desactivar_Identificacion);
+
+rutas.get('/supadmin/ti/cancelar', controlSuperAdmin.Cancelar_TI_Modificaciones);
 // ------- Seccion de Administrador -------------
 
 rutas.get('/admin/inicio', controlAdmin.inicio);

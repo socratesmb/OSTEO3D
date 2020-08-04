@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Configuracion </title>
+    <% include ../Partials/icono.html%>
+    <% include ../Partials/style.html%>
+</head>
+
+<body themebg-pattern="pattern4">
+    <div id="pcoded" class="pcoded iscollapsed" nav-type="st6" theme-layout="vertical" vertical-placement="left"
+        vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink"
+        vnavigation-view="view1" fream-type="theme1" sidebar-img="false" sidebar-img-type="img1" layout-type="light">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <% include ../Partials/navbar.html%>
+            <% include ../Partials/slider.html%>
+            <div class="pcoded-main-container" style="margin-top: 56px;">
+                <% include ../Partials/alertas.html%>
+                <div class="pcoded-wrapper">
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <div class="page-body">
+                                        <div class="card">
+                                            <ul class="nav nav-tabs md-tabs " role="tablist">
+                                                
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" data-toggle="tab" href="#info"
+                                                        role="tab"><i class="fa fa-building"></i> <%= Variables_Configuracion.TituloEntidad%>
+                                                    </a>
+                                                    <div class="slide"></div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#listentidad"
+                                                        role="tab"><i class="fa fa-address-book"></i> <%= Variables_Configuracion.TituloIdentificacion%></a>
+                                                    <div class="slide"></div>
+                                                </li>
+                                                                                               
+                                            </ul>
+
+                                            <div class="tab-content card-block">
+                                                <div class="tab-pane active" id="info" role="tabpanel">
+                                                    <div class="card">
+                                                        <form action="<%= Variables_Configuracion.RutaEntidad%>" method="POST">
+                                                            <div class="row">                                                           
+                                                                <div class="col-md-6">
+                                                                    <label>Nombre Tipo Entidad</label>
+                                                                    <input type="text" style="border-radius:8px;" oninput="this.value = this.value.toUpperCase()"
+                                                                        name="NomTipoEntidad" id="NomTipoEntidad" required
+                                                                        class="form-control"  value="<%=Tipo_Entidad.Nombre_Entidad%>">
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <label>Numero de Usuarios</label>
+                                                                    <input type="number" style="border-radius:8px;"
+                                                                        name="NumeroUsuarios" id="NumeroUsuarios" required
+                                                                        class="form-control" value="<%=Tipo_Entidad.No_Usuarios%>">
+                                                                </div>                                                                
+                                                            </div>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="col-md-12" style="text-align: center;">
+                                                                    <button class="btn btn-mat btn-success"
+                                                                        type="submit"> <%= Variables_Configuracion.BotonEntidad%> </button>
+                                                                </div>                                                                                                                       
+                                                            </div>
+                                                            <% if(Variables_Configuracion.BotonEntidad == 'Actualizar Entidad'){%>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="col-md-12" style="text-align: center;">
+                                                                    <a href="/supadmin/ti/cancelar" class="btn btn-mat btn-danger"
+                                                                        type="submit"> Cancelar Proceso </a>
+                                                                </div>
+                                                            </div>
+                                                            <%}%>
+                                                        </form>
+                                                    </div>
+                                                    <div class="card">
+                                                        <div class="table-responsive dt-responsive">
+                                                            <div id="dom-jqry_wrapper"
+                                                                class="dataTables_wrapper dt-bootstrap4">
+                                                                <div class="row">
+                                                                    <div class="col-xs-12 col-sm-12">
+                                                                        <table id="dom-jqry"
+                                                                            class="table table-striped table-bordered nowrap dataTable"
+                                                                            role="grid" aria-describedby="dom-jqry_info">
+                                                                            <thead>
+                                                                                <tr role="row">
+                                                                                    <th class="sorting_asc" tabindex="0"
+                                                                                        aria-controls="dom-jqry" rowspan="1"
+                                                                                        colspan="1" aria-sort="ascending"
+                                                                                        aria-label="Name: activate to sort column descending"
+                                                                                        style="width: 50px;">No</th>
+                                                                                    <th class="sorting" tabindex="0"
+                                                                                        aria-controls="dom-jqry" rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="Position: activate to sort column ascending"
+                                                                                        style="width: 150px;">Nombre Entidad
+                                                                                    </th>
+                                                                                    <th class="sorting" tabindex="0"
+                                                                                        aria-controls="dom-jqry" rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="Office: activate to sort column ascending"
+                                                                                        style="width: 180px;">Estado Entidad</th>
+                                                                                    <th class="sorting" tabindex="0"
+                                                                                        aria-controls="dom-jqry" rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="Age: activate to sort column ascending"
+                                                                                        style="width: 115px;">Numero de Usuarios</th>                                                                                   
+                                                                                    <th class="sorting" tabindex="0"
+                                                                                        aria-controls="dom-jqry" rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="Age: activate to sort column ascending"
+                                                                                        style="width: 115px;">Accion</th>                                                                                   
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <%if(TEnti){%>
+                                                                                <% for(var i=0; i < TEnti.length; i++) {%>
+                                                                                <tr>
+                                                                                    <td> <%= i+1 %> </td>
+                                                                                    <td> <%= TEnti[i].Nombre%></td>
+                                                                                    <td> <%= TEnti[i].Estado%></td>
+                                                                                    <td> <%= TEnti[i].No_Usuarios%></td>                                                                                    
+                                                                                    <td
+                                                                                        style='text-align: center; width: 60px;'>
+                                                                                        <a type='button'
+                                                                                            class='btn btn-warning bo_fa'
+                                                                                            href="/supadmin/buscar_tipo_entidad/<%= TEnti[i].Id_Tipo_Entidad%>"
+                                                                                            data-toggle='tooltip' 
+                                                                                            data-placement='top'
+                                                                                            title='Editar Tipo de Entidad' style="width: 50px;"><i
+                                                                                                class='fa fa-pencil'></i>
+                                                                                        </a>
+                                                                                        <a type='button'
+                                                                                            class='btn btn-danger bo_fa'
+                                                                                            href="/supadmin/bloquear_tipo_entidad/<%= TEnti[i].Id_Tipo_Entidad%>"
+                                                                                            data-toggle='tooltip'
+                                                                                            data-placement='top'
+                                                                                            title='Desactivar Tipo de Entidad' style="width: 50px;"><i
+                                                                                                class='fa fa-ban'></i>
+                                                                                        </a>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <%}%>
+                                                                                <%}%>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="listentidad" role="tabpanel">
+                                                    <div class="card">
+                                                        <form action="<%= Variables_Configuracion.RutaIdentificacion%>" method="POST">
+                                                            <div class="row">                                                           
+                                                                <div class="col-md-12">
+                                                                    <label>Tipo De Identificacion</label>
+                                                                    <input type="text" style="border-radius:8px;"
+                                                                        name="TipoIdentificacion" id="TipoIdentificacion" required
+                                                                        class="form-control" value="<%= Tipo_Identificacion%>">                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="col-md-12" style="text-align: center;">
+                                                                    <button class="btn btn-mat btn-success"
+                                                                        type="submit"> <%= Variables_Configuracion.BotonIdentificacion%> </button>
+                                                                </div>                                                                                                                       
+                                                            </div>
+                                                            <% if(Variables_Configuracion.BotonIdentificacion == 'Actualizar Identificacion'){%>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="col-md-12" style="text-align: center;">
+                                                                    <a href="/supadmin/ti/cancelar" class="btn btn-mat btn-danger"
+                                                                        type="submit"> Cancelar Proceso </a>
+                                                                </div>
+                                                            </div>
+                                                            <%}%>
+                                                        </form>
+                                                    </div>
+                                                    <div class="card">
+                                                        <div class="table-responsive dt-responsive">
+                                                            <div id="dom-jqry_wrapper"
+                                                                class="dataTables_wrapper dt-bootstrap4">
+                                                                <div class="row">
+                                                                    <div class="col-xs-12 col-sm-12">
+                                                                        <table id="dom-jqry"
+                                                                            class="table table-striped table-bordered nowrap dataTable"
+                                                                            role="grid" aria-describedby="dom-jqry_info">
+                                                                            <thead>
+                                                                                <tr role="row">
+                                                                                    <th class="sorting_asc" tabindex="0"
+                                                                                        aria-controls="dom-jqry" rowspan="1"
+                                                                                        colspan="1" aria-sort="ascending"
+                                                                                        aria-label="Name: activate to sort column descending"
+                                                                                        style="width: 50px;">No</th>
+                                                                                    <th class="sorting" tabindex="0"
+                                                                                        aria-controls="dom-jqry" rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="Position: activate to sort column ascending"
+                                                                                        style="width: 150px;">Tipo de Identificacion
+                                                                                    </th>
+                                                                                    <th class="sorting" tabindex="0"
+                                                                                        aria-controls="dom-jqry" rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="Office: activate to sort column ascending"
+                                                                                        style="width: 180px;">Estado Identificacion</th>                                                                                                                                                                   
+                                                                                    <th class="sorting" tabindex="0"
+                                                                                        aria-controls="dom-jqry" rowspan="1"
+                                                                                        colspan="1"
+                                                                                        aria-label="Age: activate to sort column ascending"
+                                                                                        style="width: 115px;">Accion</th>                                                                                   
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <%if(TIden){%>
+                                                                                <% for(var i=0; i < TIden.length; i++) {%>
+                                                                                <tr>
+                                                                                    <td> <%= i+1 %> </td>
+                                                                                    <td> <%= TIden[i].Tipo%></td>
+                                                                                    <td> <%= TIden[i].Estado%></td>                                                                                                                                                                        
+                                                                                    <td
+                                                                                        style='text-align: center; width: 60px;'>
+                                                                                        <a type='button'
+                                                                                            class='btn btn-warning bo_fa'
+                                                                                            href="/supadmin/buscar_identificacion/<%= TIden[i].Id_Identificacion%>"
+                                                                                            data-toggle='tooltip' 
+                                                                                            data-placement='top'
+                                                                                            title='Editar Tipo de Entidad' style="width: 50px;"><i
+                                                                                                class='fa fa-pencil'></i>
+                                                                                        </a>
+                                                                                        <a type='button'
+                                                                                            class='btn btn-danger bo_fa'
+                                                                                            href="/supadmin/bloquear_identificacion/<%= TIden[i].Id_Identificacion%>"
+                                                                                            data-toggle='tooltip'
+                                                                                            data-placement='top'
+                                                                                            title='Desactivar Tipo de Entidad' style="width: 50px;"><i
+                                                                                                class='fa fa-ban'></i>
+                                                                                        </a>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <%}%>
+                                                                                <%}%>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <% include ../Partials/js.html%>
+</body>
+
+</html>

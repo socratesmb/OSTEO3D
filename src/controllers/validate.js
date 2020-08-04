@@ -7,7 +7,7 @@ let alerta = {
     tipo: '',
     mensaje: ''
 };
-
+ 
 model.inicio = (req, res, next) => {
     passport.authenticate('local.signin', (error, user, data) => {
         if (error) {
