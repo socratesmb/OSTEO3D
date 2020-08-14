@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Cargue de Modelos3D </title>
+    <% include ../Partials/icono.html%>
+    <% include ../Partials/style.html%>
+</head>
+
+<body themebg-pattern="pattern4">
+    <div id="pcoded" class="pcoded iscollapsed" nav-type="st6" theme-layout="vertical" vertical-placement="left"
+        vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink"
+        vnavigation-view="view1" fream-type="theme1" sidebar-img="false" sidebar-img-type="img1" layout-type="light">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <% include ../Partials/navbar.html%>
+            <% include ../Partials/slider.html%>
+            <div class="pcoded-main-container" style="margin-top: 56px;">
+                <% include ../Partials/alertas.html%>
+                <div class="pcoded-wrapper">
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <div class="page-body">
+                                        <div class="card">
+                                            <ul class="nav nav-tabs md-tabs " role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" data-toggle="tab" href="#partes"
+                                                        role="tab"><i class="fa fa-cubes"></i> Asignacion de Partes
+                                                    </a>
+                                                    <div class="slide"></div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#animal" role="tab"><i
+                                                            class="fa fa-cube"></i> Creacion de Animal</a>
+                                                    <div class="slide"></div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#listanimal"
+                                                        role="tab"><i class="fa fa-list-ol"></i> Listado de Partes y
+                                                        Animales
+                                                    </a>
+                                                    <div class="slide"></div>
+                                                </li>
+                                            </ul>
+
+                                            <div class="tab-content card-block">
+                                                <div class="tab-pane active" id="partes" role="tabpanel">
+                                                    <form action="/general/registro_huesos" method="post">
+                                                        <div class="row">
+
+                                                            <div class="col-md-6">
+                                                                <label>Nombre del Hueso</label>
+                                                                <input type="text" style="border-radius:8px;"
+                                                                    name="NombreHueso" id="NombreHueso" required
+                                                                    class="form-control">
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                <label>Asociacion de Animal</label>
+                                                                <select class="form-control" name="IdAnimal"
+                                                                    id="IdAnimal" style="border-radius:8px;" required
+                                                                    title="Que Tipo de Empresa Es">
+                                                                    <option>Seleccione Opción</option>
+                                                                    <%if(sele_t_animal){%>
+                                                                    <% for(var i=0; i < sele_t_animal.length; i++){%>
+                                                                    <option value="<%=sele_t_animal[i].Id_Animal%>">
+                                                                        <%= sele_t_animal[i].N_Cientifico%> </option>
+                                                                    <%}%>
+                                                                    <%}%>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <label>Ruta del Modelo 3D <a
+                                                                        href="https://help.sketchfab.com/hc/en-us/articles/203509907-Embedding-your-models"
+                                                                        target="_newblank" class="fa fa-question-circle" data-toggle='tooltip'
+                                                                        data-placement='top'
+                                                                        title="Ingrese el SRC de la Url de la Ruta del Modelo 3D, Recuerde que el modelo3D debe de estar cargado en la plataforma SKETCHFAB, Para Mas Informacion dar Click"></a>
+                                                                </label>
+                                                                <input type="text" style="border-radius:8px;"
+                                                                    name="RutaHueso" id="RutaHueso" required
+                                                                    class="form-control">
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <div class="form-group-control">
+                                                                    <label>Descripcion del Hueso <a id="charNum"> 250
+                                                                            Caracteres </a> </label>
+                                                                    <textarea class="form-control"
+                                                                        name="DescripcionHueso" id="DescripcionHueso"
+                                                                        cols="30" rows="4" required maxlength="250"
+                                                                        title="Maximo 250 letras"
+                                                                        onkeyup="Contador(this);"> </textarea>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <label>Caracteristicas Especiales <a id="charNum2"> 200
+                                                                        Caracteres </a> </label>
+                                                                <textarea class="form-control"
+                                                                    name="CaracteristicasAnimal"
+                                                                    id="CaracteristicasAnimal" cols="30" rows="4"
+                                                                    required maxlength="200" onkeyup="Contador2(this);"
+                                                                    title="Maximo 200 letras"> </textarea>
+                                                            </div>
+
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-md-12" style="text-align: center;">
+                                                                <button class="btn btn-mat btn-success" type="submit">
+                                                                    Resgistrar Hueso </button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+
+                                                <div class="tab-pane" id="animal" role="tabpanel">
+                                                    <form action="/general/registro_animal" method="post">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label>Nombre del Animal</label>
+                                                                <input type="text" style="border-radius:8px;"
+                                                                    name="NombreAnimal" id="NombreAnimal" required
+                                                                    class="form-control">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label>Nombre Cientifico del Animal</label>
+                                                                <input type="text" style="border-radius:8px;"
+                                                                    name="NombreCAnimal" id="NombreCAnimal" required
+                                                                    class="form-control">
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <label>Descripcion del Animal <a id="charNum3"> 250
+                                                                        Caracteres </a> </label>
+                                                                <textarea class="form-control" name="DescripcionAnimal"
+                                                                    id="DescripcionAnimal" cols="30" rows="4" required
+                                                                    onkeyup="Contador3(this);" maxlength="250"
+                                                                    title="Maximo 250 letras"> </textarea>
+                                                            </div>
+
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-md-12" style="text-align: center;">
+                                                                <button class="btn btn-mat btn-success" type="submit">
+                                                                    Registrar Animal </button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+
+                                                <div class="tab-pane" id="listanimal" role="tabpanel">
+                                                    <div class="table-responsive dt-responsive">
+                                                        <div id="dom-jqry_wrapper"
+                                                            class="dataTables_wrapper dt-bootstrap4">
+                                                            <div class="row">
+                                                                <div class="col-xs-12 col-sm-12">
+                                                                    <table id="dom-jqry"
+                                                                        class="table table-striped table-bordered nowrap dataTable"
+                                                                        role="grid" aria-describedby="dom-jqry_info">
+                                                                        <thead>
+                                                                            <tr role="row">
+                                                                                <th class="sorting_asc" tabindex="0"
+                                                                                    aria-controls="dom-jqry" rowspan="1"
+                                                                                    colspan="1" aria-sort="ascending"
+                                                                                    aria-label="Name: activate to sort column descending"
+                                                                                    style="width: 50px;">No</th>
+                                                                                <th class="sorting" tabindex="0"
+                                                                                    aria-controls="dom-jqry" rowspan="1"
+                                                                                    colspan="1"
+                                                                                    aria-label="Position: activate to sort column ascending"
+                                                                                    style="width: 150px;">Nombre del
+                                                                                    Animal
+                                                                                </th>
+                                                                                <th class="sorting" tabindex="0"
+                                                                                    aria-controls="dom-jqry" rowspan="1"
+                                                                                    colspan="1"
+                                                                                    aria-label="Office: activate to sort column ascending"
+                                                                                    style="width: 180px;">Nombre
+                                                                                    Cientifico</th>
+                                                                                <th class="sorting" tabindex="0"
+                                                                                    aria-controls="dom-jqry" rowspan="1"
+                                                                                    colspan="1"
+                                                                                    aria-label="Salary: activate to sort column ascending"
+                                                                                    style="width: 50px;">Nombre Hueso
+                                                                                </th>
+                                                                                <th class="sorting" tabindex="0"
+                                                                                    aria-controls="dom-jqry" rowspan="1"
+                                                                                    colspan="1"
+                                                                                    aria-label="Salary: activate to sort column ascending"
+                                                                                    style="width: 50px;">Estado
+                                                                                </th>
+                                                                                <th class="sorting" tabindex="0"
+                                                                                    aria-controls="dom-jqry" rowspan="1"
+                                                                                    colspan="1"
+                                                                                    aria-label="Salary: activate to sort column ascending"
+                                                                                    style="width: 81px;">Acciones
+                                                                                </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <%if(lista_animales){%>
+                                                                            <% for(var i=0; i < lista_animales.length; i++) {%>
+                                                                            <tr>
+                                                                                <td> <%= i+1 %> </td>
+                                                                                <td> <%= lista_animales[i].Nombre_Animal%>
+                                                                                </td>
+                                                                                <td> <%= lista_animales[i].N_Cientifico%>
+                                                                                </td>
+                                                                                <td> <%= lista_animales[i].Nombre_Hueso%>
+                                                                                </td>
+                                                                                <td> <%= lista_animales[i].Estado_Hueso%>
+                                                                                </td>
+                                                                                <td
+                                                                                    style='text-align: center; width: 60px;'>
+                                                                                    <a type='button'
+                                                                                        class='btn btn-danger bo_fa'
+                                                                                        href="/supadmin/bloquear_parte/<%= lista_animales[i].Id_Huesos%>"
+                                                                                        data-toggle='tooltip'
+                                                                                        data-placement='top'
+                                                                                        title='Desactivar Hueso o Parte de Animal'
+                                                                                        style="width: 50px;"><i
+                                                                                            class='fa fa-ban'></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <%}%>
+                                                                            <%}%>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include ../Partials/js.html%>
+    <script>
+        function Contador(obj) {
+            var maxlength = 250;
+            var strlength = obj.value.length;
+            var result = (maxlength - strlength);
+
+            document.getElementById("charNum").innerHTML = result + ' Caracteres';
+        }
+
+        function Contador2(obj) {
+            var maxlength = 200;
+            var strlength = obj.value.length;
+            var result = (maxlength - strlength);
+
+            document.getElementById("charNum2").innerHTML = result + ' Caracteres';
+        }
+
+        function Contador3(obj) {
+            var maxlength = 250;
+            var strlength = obj.value.length;
+            var result = (maxlength - strlength);
+
+            document.getElementById("charNum3").innerHTML = result + ' Caracteres';
+        }
+    </script>
+</body>
+
+</html>

@@ -54,7 +54,6 @@ let Tipo_Entidad = {
 let Tipo_Identificacion = '';
 //#endregion
 
-
 //-------- Modelo para Cargar la vista principal del super usuario ----------------
 model.inicio = async (req, res) => {
     datos = req.session.datos;
@@ -467,7 +466,7 @@ function LimpiarVariables() {
         IdContacto: '',
     };
 
-}
+};
 
 function LimpiarVariables2() {
     Variables_Configuracion = {
@@ -490,6 +489,10 @@ function LimpiarVariables2() {
         tipo: '',
         mensaje: ''
     };
-}
+};
+
+function LimpiarVariables3() {
+
+};
 //#endregion
 module.exports = model;

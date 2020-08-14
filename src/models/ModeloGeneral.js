@@ -212,6 +212,95 @@ model.password_update = async (req, res) => {
 };
 //#endregion
 
+//-------- Modelo para Cargar Modelo3D y sus partes -----------------
+//#region 
+model.Modelo3D = async (req, res) => {
+    datos = req.session.datos;
+    menu = req.session.menu;
+
+    const lista_animales = await pool.query("select * from Lista_Partes_Animales where id_entidad = " + datos.Id_Entidad);
+    const sele_t_animal = await pool.query("select Id_Animal, N_Cientifico from lista_animales where id_entidad =" + datos.Id_Entidad);
+
+    res.render('Generales/modelos3d.html', { datos, menu, alerta, lista_animales, sele_t_animal });
+};
+
+model.Registro_Animal = async (req, res) => {
+    datos = req.session.datos;
+    await pool.query("select Registro_Animal('" + req.body.NombreAnimal + "','" + req.body.NombreCAnimal + "', '" + req.body.DescripcionAnimal + "', " + datos.Id_Entidad + ") as resultado;", (err, result) => {
+        if (err) {
+            alerta = {
+                tipo: 'peligro',
+                mensaje: 'error' + err
+            };
+            console.log(err)
+            res.redirect('/supadmin/modelos');
+        } else {
+            if (result[0].resultado == 0) {
+                alerta = {
+                    tipo: 'inseguro',
+                    mensaje: 'El Animal Ya Esta Registrado En El Sistema, Porfavor Verifique'
+                };
+                res.redirect('/supadmin/modelos');
+            } else {
+                alerta = {
+                    tipo: 'correcto',
+                    mensaje: 'Nuevo Animal Registrado Exitosamente'
+                };
+                res.redirect('/supadmin/modelos');
+            }
+        }
+    });
+};
+
+model.Resgistro_Hueso = async (req, res) => {
+    datos = req.session.datos;
+    await pool.query("select registro_parte_animal(" + req.body.IdAnimal + ", '" + req.body.NombreHueso + "', '" + req.body.DescripcionHueso + "', '" + req.body.CaracteristicasAnimal + "', '" + req.body.RutaHueso + "') as resultado;", (err, result) => {
+        if (err) {
+            console.log(err)
+            alerta = {
+                tipo: 'peligro',
+                mensaje: 'error' + err
+            };
+            res.redirect('/supadmin/modelos');
+        } else {
+            console.log(result)
+            if (result[0].resultado == 0) {
+                alerta = {
+                    tipo: 'inseguro',
+                    mensaje: 'El Hueso o Parte de Animal que Intenta Ingresar Ya Esta Cargado en el Sistema'
+                };
+                res.redirect('/supadmin/modelos');
+            } else {
+                alerta = {
+                    tipo: 'correcto',
+                    mensaje: 'Nueva Parte de Animal Cargada Exitosamente'
+                };
+                res.redirect('/supadmin/modelos');
+            }
+        }
+    });
+};
+
+model.Desactivar_Hueso = async (req, res) => {
+    const { Id_Hueso } = req.params;
+    await pool.query("update huesos set huesos.Estado = 'INACTIVO' where huesos.Id_Huesos =" + Id_Hueso, (err, result) => {
+        if (err) {
+            console.log(err)
+            alerta = {
+                tipo: 'peligro',
+                mensaje: 'error' + err
+            };
+            res.redirect('/supadmin/modelos');
+        } else {
+            alerta = {
+                tipo: 'correcto',
+                mensaje: 'Nueva Parte de Animal Desactivada'
+            };
+            res.redirect('/supadmin/modelos');
+        }
+    });
+};
+//#endregion
 //------- Funciones de Limpieza de Variables ----------
 //#region 
 function LimpiarVariables() {
@@ -219,6 +308,10 @@ function LimpiarVariables() {
         tipo: '',
         mensaje: ''
     }
+
+}
+
+function LimpiarVariables2() {
 
 }
 //#endregion

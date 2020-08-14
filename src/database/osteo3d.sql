@@ -110,3 +110,50 @@ begin
 	(default, IdContacto, Contrasena, Id_Persona);
 			
 end;
+
+
+CREATE FUNCTION Registro_Animal(Nombre_Animal VARCHAR(65),Nombre_Cientifico VARCHAR(100),Descripcion_Animal VARCHAR(250),Id_Entidad INT) 
+	returns boolean 
+	DETERMINISTIC
+begin 		
+	declare NA int;	
+	select animal.Id_Animal into NA from animal where animal.Nombre_Cientifico = Nombre_Cientifico and animal.Entidad_Id_Entidad = Id_Entidad;
+	if NA != 0 then
+	return false;
+	else
+	INSERT INTO `animal` (`Id_Animal` , `Nombre`, `Nombre_Cientifico`, `Descripcion`, `Fotografia`, `Estado`, `Entidad_Id_Entidad`) VALUES
+	(default, Nombre_Animal, Nombre_Cientifico, Descripcion_Animal, 'imagenes/animal/1.png', 'ACTIVO', Id_Entidad);
+	return true;		
+	end if;
+end;
+
+create or replace view `Lista_Animales` as 
+select entidad.Id_Entidad as Id_Entidad, animal.Id_Animal as Id_Animal, animal.Nombre as Nombre_Animal, animal.Nombre_Cientifico as N_Cientifico, animal.Fotografia as Foto_Animal ,animal.Estado as Estado_Animal
+from animal 
+inner join entidad on entidad.Id_Entidad = animal.Entidad_Id_Entidad
+where entidad.Estado = 'ACTIVO';
+
+CREATE FUNCTION Registro_Parte_Animal(Id_Animal INT, Nombre_Hueso VARCHAR(45), Descripcion_Hueso VARCHAR(250), Descripcion_Especial VARCHAR(200), Ruta_Url TEXT) 
+	returns boolean 
+	DETERMINISTIC
+begin 		
+	declare NH int;	
+	
+	select huesos.Id_Huesos into NH from huesos where huesos.Nombre = Nombre_Hueso;
+
+	if NH != 0 then
+	return false;
+	else
+	INSERT INTO `huesos` (Id_Huesos , Nombre, Descripcion, Caracteres, Ruta) VALUES
+	(default, Nombre_Hueso, Nombre_Hueso, Descripcion_Especial, Ruta_Url);
+	return true;		
+	end if;
+end;
+
+create or replace view `Lista_Partes_Animales` as 
+select entidad.Id_Entidad as Id_Entidad, animal.Id_Animal as Id_Animal, animal.Nombre as Nombre_Animal, animal.Nombre_Cientifico as N_Cientifico, huesos.Id_Huesos as Id_Huesos, huesos.Nombre as Nombre_Hueso, huesos.Estado as Estado_Hueso
+from entidad
+inner join animal on animal.Entidad_Id_Entidad = entidad.Id_Entidad 
+inner join asignacion_ah on asignacion_ah.Animal_Id_Animal = animal.Id_Animal 
+inner join huesos on huesos.Id_Huesos  = asignacion_ah.Huesos_Id_Huesos 
+where entidad.Estado = 'ACTIVO' and animal.Estado = 'ACTIVO';

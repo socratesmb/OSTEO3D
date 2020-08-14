@@ -74,6 +74,15 @@ rutas.post('/supadmin/Actualizacion_Identificacion', controlSuperAdmin.Actualiza
 rutas.get('/supadmin/bloquear_identificacion/:Id_Identificacion', controlSuperAdmin.Desactivar_Identificacion);
 
 rutas.get('/supadmin/ti/cancelar', controlSuperAdmin.Cancelar_TI_Modificaciones);
+
+rutas.get('/supadmin/modelos', controlGeneral.Modelo3D);
+
+rutas.post('/general/registro_animal', controlGeneral.Registro_Animal);
+
+rutas.post('/general/registro_huesos', controlGeneral.Resgistro_Hueso);
+
+rutas.get('/supadmin/bloquear_parte/:Id_Hueso', controlGeneral.Desactivar_Hueso);
+
 // ------- Seccion de Administrador -------------
 
 rutas.get('/admin/inicio', controlAdmin.inicio);
@@ -99,6 +108,9 @@ rutas.post('/send/recovery', controlGeneral.recuperar_password);
 rutas.get('/registro', controlGeneral.registro);
 
 rutas.post('/crear/usuario', controlGeneral.registro_usuario);
+
+
+
 //-----------------------------------------
 rutas.get('/Especies', (req, res) => {
     res.render('especies.html');
