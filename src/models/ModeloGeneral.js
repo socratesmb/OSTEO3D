@@ -212,7 +212,33 @@ model.password_update = async (req, res) => {
 };
 //#endregion
 
-//-------- Modelo para Cargar Modelo3D y sus partes -----------------
+// ------- Modelo para CargarVista Modelos3D y Objetos Partes Individuales ----------
+//#region 
+model.inicio = async (req, res) => {
+    datos = req.session.datos;
+    menu = req.session.menu;
+
+    const Lista_Animales = await pool.query("select * from lista_animales where Estado_Animal = 'ACTIVO' and Id_Entidad = 1 and Id_Entidad = " + datos.Id_Entidad);
+
+    console.log(Lista_Animales)
+
+    res.render('Generales/inicio.html', { datos, menu, alerta, Lista_Animales });
+};
+
+
+model.Cargar_Modelo3D = async (req, res) => {
+    datos = req.session.datos;
+    menu = req.session.menu;
+    
+    const { Id_Animal } = req.params;
+
+    const List_Ani = await pool.query("select * from Lista_Modelos3D where Id_Animal =" + Id_Animal);   
+
+    res.render('Generales/especie.html', { datos, menu, List_Ani});
+};
+//#endregion
+
+//-------- Modelo para Crear y Registrar Modelos3D y sus partes -----------------
 //#region 
 model.Modelo3D = async (req, res) => {
     datos = req.session.datos;
@@ -222,6 +248,7 @@ model.Modelo3D = async (req, res) => {
     const sele_t_animal = await pool.query("select Id_Animal, N_Cientifico from lista_animales where id_entidad =" + datos.Id_Entidad);
 
     res.render('Generales/modelos3d.html', { datos, menu, alerta, lista_animales, sele_t_animal });
+    LimpiarVariables();
 };
 
 model.Registro_Animal = async (req, res) => {
@@ -308,10 +335,6 @@ function LimpiarVariables() {
         tipo: '',
         mensaje: ''
     }
-
-}
-
-function LimpiarVariables2() {
 
 }
 //#endregion

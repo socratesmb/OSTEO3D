@@ -28,139 +28,32 @@
 
                                     <div class="page-body">
                                         <div class="row">
-                                            <div class="col-sm-4">
-                                                <!-- Basic usage card start -->
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <h3>Mono Titi</h3>
-                                                        <h5>Plecturosebus Caquetensis</h5>
-                                                    </div>
-                                                    <div class="card-block">
-                                                        <div class="panel panel-flat">
-                                                            <div class="panel-body">
-                                                                <div class="image-cropper-container" align="center"><img
-                                                                        src="../files/animales/Titi_Del_Caqueta.jpg"
-                                                                        alt="Hola mundo" class="crop-basic img-fluid"
-                                                                        width="200px"></div>
-                                                                <br>
-                                                                <a class="btn btn-primary" href="/Caracteristica"
-                                                                    role="button">Ver Animal</a>
+                                            <% Lista_Animales.forEach(element => { %>
+                                                <div class="col-sm-4">
+                                                    <!-- Basic usage card start -->
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <h3><%= element.Nombre_Animal %></h3>
+                                                            <h5><%= element.N_Cientifico %></h5>
+                                                        </div>
+                                                        <div class="card-block">
+                                                            <div class="panel panel-flat">
+                                                                <div class="panel-body">
+                                                                    <div class="image-cropper-container" align="center"><img
+                                                                            src="<%= element.Foto_Animal%>"
+                                                                            class="crop-basic img-fluid"
+                                                                            width="200px"></div>
+                                                                    <br>
+                                                                    <a class="btn btn-primary" href="/modelo3d/animal/<%= element.Id_Animal%>"
+                                                                        role="button">Ver Animal</a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- Basic usage card end -->
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <h5>Porcino</h5>
-
-                                                    </div>
-                                                    <div class="card-block">
-                                                        <div class="panel panel-flat">
-                                                            <div class="panel-body">
-                                                                <div class="image-cropper-container"><img
-                                                                        src="..\files\assets\images\modal\porcino.jpg"
-                                                                        alt="" class="crop-modal img-fluid"></div>
-                                                                <br>
-                                                                <a class="btn btn-primary" href="#" role="button">Ver
-                                                                    mas</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <h5>Simio</h5>
-
-                                                    </div>
-                                                    <div class="card-block">
-                                                        <div class="panel panel-flat">
-                                                            <div class="panel-body">
-                                                                <div class="image-cropper-container"><img
-                                                                        src="..\files\assets\images\modal\simio.jpg"
-                                                                        alt="" class="crop-modal img-fluid"></div>
-                                                                <br>
-                                                                <a class="btn btn-primary" href="#" role="button">Ver
-                                                                    mas</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <!-- Basic usage card start -->
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <h5>Felino</h5>
-                                                    </div>
-                                                    <div class="card-block">
-                                                        <div class="panel panel-flat">
-                                                            <div class="panel-body">
-                                                                <div class="image-cropper-container"><img
-                                                                        src="..\files\assets\images\modal\felino.jpg"
-                                                                        alt="" class="crop-basic img-fluid"></div>
-                                                                <br>
-                                                                <a class="btn btn-primary" href="#" role="button">Ver
-                                                                    mas</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Basic usage card end -->
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <h5>Ave</h5>
-
-                                                    </div>
-                                                    <div class="card-block">
-                                                        <div class="panel panel-flat">
-                                                            <div class="panel-body">
-                                                                <div class="image-cropper-container"><img
-                                                                        src="..\files\assets\images\modal\ave.jpg"
-                                                                        alt="" class="crop-modal img-fluid"></div>
-                                                                <br>
-                                                                <a class="btn btn-primary" href="#" role="button">Ver
-                                                                    mas</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <h5>Bovino</h5>
-
-                                                    </div>
-                                                    <div class="card-block">
-                                                        <div class="panel panel-flat">
-                                                            <div class="panel-body">
-                                                                <div class="image-cropper-container"><img
-                                                                        src="..\files\assets\images\modal\bovino.jpg"
-                                                                        alt="" class="crop-modal img-fluid"></div>
-                                                                <br>
-                                                                <a class="btn btn-primary" href="#" role="button">Ver
-                                                                    mas</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
+                                                    <!-- Basic usage card end -->
+                                                </div>                                                
+                                            <%});%>                                            
+                                        </div>                                        
                                     </div>
                                 </div>
                             </div>

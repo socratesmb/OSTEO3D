@@ -41,7 +41,7 @@ rutas.post('/signin', controlValidacion.inicio);
 
 // ------- Seccion de Super Administrador -------------
 
-rutas.get('/supadmin/home', controlSuperAdmin.inicio);
+rutas.get('/supadmin/home', controlGeneral.inicio);
 
 rutas.get('/supadmin/entidades', controlSuperAdmin.entidades);
 
@@ -109,7 +109,7 @@ rutas.get('/registro', controlGeneral.registro);
 
 rutas.post('/crear/usuario', controlGeneral.registro_usuario);
 
-
+rutas.get('/modelo3d/animal/:Id_Animal', controlGeneral.Cargar_Modelo3D);
 
 //-----------------------------------------
 rutas.get('/Especies', (req, res) => {

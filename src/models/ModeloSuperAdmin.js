@@ -54,14 +54,6 @@ let Tipo_Entidad = {
 let Tipo_Identificacion = '';
 //#endregion
 
-//-------- Modelo para Cargar la vista principal del super usuario ----------------
-model.inicio = async (req, res) => {
-    datos = req.session.datos;
-    menu = req.session.menu;
-
-    res.render('Generales/inicio.html', { datos, menu, alerta });
-};
-
 //--------- Modelo para Cargar Vista de Creacion de Entidades ----------------
 //#region 
 
