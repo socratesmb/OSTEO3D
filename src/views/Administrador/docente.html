@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> <%= variables.Titulo%> </title>
+    <% include ../Partials/icono.html%>
+    <% include ../Partials/style.html%>
+</head>
+
+<body themebg-pattern="pattern4">
+    <div id="pcoded" class="pcoded iscollapsed" nav-type="st6" theme-layout="vertical" vertical-placement="left"
+        vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink"
+        vnavigation-view="view1" fream-type="theme1" sidebar-img="false" sidebar-img-type="img1" layout-type="light">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <% include ../Partials/navbar.html%>
+            <% include ../Partials/slider.html%>
+            <div class="pcoded-main-container" style="margin-top: 56px;">
+                <% include ../Partials/alertas.html%>
+                <div class="pcoded-wrapper">
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <div class="page-body">
+                                        <div class="card">
+                                            <ul class="nav nav-tabs md-tabs " role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" data-toggle="tab" href="#docente"
+                                                        role="tab"><i class="fa fa-terminal"></i> <%= variables.Titulo%>
+                                                    </a>
+                                                    <div class="slide"></div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#listadocente"
+                                                        role="tab"><i class="fa fa-list-ol"></i> Listado de
+                                                        Docentes</a>
+                                                    <div class="slide"></div>
+                                                </li>
+                                            </ul>
+
+                                            <div class="tab-content card-block">
+                                                <div class="tab-pane active" id="docente" role="tabpanel">
+                                                    <form action="<%= variables.Ruta_Form%>" method="post">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label>Nombre del Docente</label>
+                                                                <input type="text" style="border-radius:8px;"
+                                                                    name="NombreDocente" id="NombreDocente" required
+                                                                    class="form-control" value="<%= Docente.Nombre%>"
+                                                                    title="Solo Nombre de la Persona">
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                <label>Apellidos del Docente</label>
+                                                                <input type="text" style="border-radius:8px;"
+                                                                    name="ApellidoDocente" id="ApellidoDocente" required
+                                                                    class="form-control" value="<%= Docente.Apellido%>"
+                                                                    title="Solo Apellidos de la Persona">
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                <label>Identificacion</label>
+                                                                <input type="text" style="border-radius:8px;"
+                                                                    name="Identificacion" id="Identificacion" required
+                                                                    class="form-control" value="<%= Docente.Identificacion%>"
+                                                                    title="No de Identificacion del Documento">
+                                                            </div>                                                                                                                    
+
+                                                            <div class="col-md-6">
+                                                                <label>Correo Electrónico</label>
+                                                                <input type="email" style="border-radius:8px;"
+                                                                    name="Correo" id="Correo" required
+                                                                    class="form-control" value="<%= Docente.Correo%>"
+                                                                    title="Correo de Contato">
+                                                            </div>                                                                                                                     
+
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-md-12" style="text-align: center;">
+                                                                <button class="btn btn-mat btn-success" type="submit">
+                                                                    <%= variables.Boton%> </button>
+                                                            </div>
+                                                        </div>
+                                                        <% if(variables.Boton == 'Actualizar Docente'){%>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-md-12" style="text-align: center;">
+                                                                <a href="/admin/cancelar"
+                                                                    class="btn btn-mat btn-danger" type="submit">
+                                                                    Cancelar Proceso </a>
+                                                            </div>
+                                                        </div>
+                                                        <%}%>
+                                                    </form>
+                                                </div>
+                                                <div class="tab-pane" id="listadocente" role="tabpanel">
+                                                    <div class="table-responsive dt-responsive">
+                                                        <div id="dom-jqry_wrapper"
+                                                            class="dataTables_wrapper dt-bootstrap4">
+                                                            <div class="row">
+                                                                <div class="col-xs-12 col-sm-12">
+                                                                    <table id="dom-jqry"
+                                                                        class="table table-striped table-bordered nowrap dataTable"
+                                                                        role="grid" aria-describedby="dom-jqry_info">
+                                                                        <thead>
+                                                                            <tr role="row">
+                                                                                <th class="sorting_asc" tabindex="0"
+                                                                                    aria-controls="dom-jqry" rowspan="1"
+                                                                                    colspan="1" aria-sort="ascending"
+                                                                                    aria-label="Name: activate to sort column descending"
+                                                                                    style="width: 50px;">No</th>                                                                               
+                                                                                <th class="sorting" tabindex="0"
+                                                                                    aria-controls="dom-jqry" rowspan="1"
+                                                                                    colspan="1"
+                                                                                    aria-label="Office: activate to sort column ascending"
+                                                                                    style="width: 115px;">Nombre</th>
+                                                                                <th class="sorting" tabindex="0"
+                                                                                    aria-controls="dom-jqry" rowspan="1"
+                                                                                    colspan="1"
+                                                                                    aria-label="Age: activate to sort column ascending"
+                                                                                    style="width: 115px;">Apellido</th>
+                                                                                <th class="sorting" tabindex="0"
+                                                                                    aria-controls="dom-jqry" rowspan="1"
+                                                                                    colspan="1"
+                                                                                    aria-label="Start date: activate to sort column ascending"
+                                                                                    style="width: 115px;">Identificacion
+                                                                                </th>
+                                                                                <th class="sorting" tabindex="0"
+                                                                                    aria-controls="dom-jqry" rowspan="1"
+                                                                                    colspan="1"
+                                                                                    aria-label="Salary: activate to sort column ascending"
+                                                                                    style="width: 180px;">Correo Electronico
+                                                                                </th>                                                                               
+                                                                                <th class="sorting" tabindex="0"
+                                                                                    aria-controls="dom-jqry" rowspan="1"
+                                                                                    colspan="1"
+                                                                                    aria-label="Salary: activate to sort column ascending"
+                                                                                    style="width: 81px;">Acciones
+                                                                                </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <%if(ListaDocente){%>
+                                                                                <% for(var i=0; i < ListaDocente.length; i++) {%>
+                                                                                <tr>
+                                                                                    <td> <%= i+1 %> </td>
+                                                                                    <td> <%= ListaDocente[i].Nombre_Persona%>
+                                                                                    </td>
+                                                                                    <td> <%= ListaDocente[i].Apellido_Persona%>
+                                                                                    </td>
+                                                                                    <td> <%= ListaDocente[i].Identificacion_Persona%>
+                                                                                    </td>
+                                                                                    <td> <%= ListaDocente[i].Correo_Persona%>
+                                                                                    </td>                                                                                    
+                                                                                    <td
+                                                                                        style='text-align: center; width: 60px;'>
+                                                                                        <a type='button'
+                                                                                            class='btn btn-warning bo_fa'
+                                                                                            href="/admin/docente/buscar_docente/<%= ListaDocente[i].Id_Persona%>"
+                                                                                            data-toggle='tooltip' 
+                                                                                            data-placement='top'
+                                                                                            title='Editar Docente' style="width: 50px;"><i
+                                                                                                class='fa fa-pencil'></i>
+                                                                                        </a>
+                                                                                        <a type='button'
+                                                                                            class='btn btn-danger bo_fa'
+                                                                                            href="/admin/docente/bloquear_docente/<%= ListaDocente[i].Id_Persona%>"
+                                                                                            data-toggle='tooltip'
+                                                                                            data-placement='top'
+                                                                                            title='Bloquear Docente' style="width: 50px;"><i
+                                                                                                class='fa fa-ban'></i>
+                                                                                        </a>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <%}%>
+                                                                            <%}%>                                                                         
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include ../Partials/js.html%>
+</body>
+
+</html>

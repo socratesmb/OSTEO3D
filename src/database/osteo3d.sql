@@ -157,3 +157,28 @@ inner join animal on animal.Entidad_Id_Entidad = entidad.Id_Entidad
 inner join asignacion_ah on asignacion_ah.Animal_Id_Animal = animal.Id_Animal 
 inner join huesos on huesos.Id_Huesos  = asignacion_ah.Huesos_Id_Huesos 
 where entidad.Estado = 'ACTIVO' and animal.Estado = 'ACTIVO';
+
+CREATE PROCEDURE `Registro_Docente`(IN NombreUsuario VARCHAR(45), ApellidoUsuario VARCHAR(45), Identificacion INT, CorreoUsuario VARCHAR(65), Id_Entidad INT, Contrasena VARCHAR(65))
+begin 				
+	declare Id_Pers int;	
+	
+	INSERT INTO `persona` (`Id_Persona`, `Identificacion_idIdentificacion`, `Identificacion`, `Nombre`, `Apellido`, `Correo_Electronico`, `Imagen`, `Modificacion`) VALUES
+	(default, 1, Identificacion, NombreUsuario, ApellidoUsuario, CorreoUsuario, '/files/assets/images/user.png', 1);
+		
+	select persona.Id_Persona into Id_Pers from persona where persona.Identificacion = Identificacion;
+		
+	INSERT INTO `registro_pe` (`Id_Registro_PE`, `fecha`, `estado`, `Persona_Id_Persona`, `Entidad_Id_Entidad`, `Rol_Id_Rol`) VALUES
+	(default, now(), 'ACTIVO', Id_Pers, Id_Entidad, 3);
+	
+	INSERT INTO `usuario` (`Id_Usuario`, `Usuario`, `Password`, `Persona_Id_Persona`) VALUES
+	(default, Identificacion, Contrasena, Id_Pers);
+			
+end;
+
+create or replace view `Lista_Docente` as
+select entidad.Id_Entidad as Id_Entidad, persona.Nombre as Nombre_Persona, persona.Apellido as Apellido_Persona, persona.Identificacion as Identificacion_Persona, persona.Correo_Electronico as Correo_Persona, rol.Nombre as Perfil 
+from persona 
+inner join registro_pe on registro_pe.Persona_Id_Persona = persona.Id_Persona 
+inner join rol on rol.Id_Rol = registro_pe.Rol_Id_Rol 
+inner join entidad on entidad.Id_Entidad = registro_pe.Entidad_Id_Entidad 
+where registro_pe.Estado = 'ACTIVO' and rol.Nombre = 'DOCENTE';

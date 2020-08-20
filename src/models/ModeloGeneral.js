@@ -26,6 +26,7 @@ let Perfil = {
     Imagen: ''
 }
 
+let Id_Anim = '';
 //#endregion
 
 
@@ -218,23 +219,33 @@ model.inicio = async (req, res) => {
     datos = req.session.datos;
     menu = req.session.menu;
 
-    const Lista_Animales = await pool.query("select * from lista_animales where Estado_Animal = 'ACTIVO' and Id_Entidad = 1 and Id_Entidad = " + datos.Id_Entidad);
+    console.log(datos);
+
+    const Lista_Animales = await pool.query("select * from lista_animales where Estado_Animal = 'ACTIVO' and Id_Entidad = 1 or Id_Entidad = " + datos.Id_Entidad);
 
     console.log(Lista_Animales)
 
     res.render('Generales/inicio.html', { datos, menu, alerta, Lista_Animales });
 };
 
-
 model.Cargar_Modelo3D = async (req, res) => {
     datos = req.session.datos;
     menu = req.session.menu;
-    
+
     const { Id_Animal } = req.params;
+    const { Id_Hueso } = req.params;
 
-    const List_Ani = await pool.query("select * from Lista_Modelos3D where Id_Animal =" + Id_Animal);   
+    if (Id_Hueso == 0) {
+        const reults = await pool.query("select Id_Huesos from Lista_Modelos3D where Id_Animal = " + Id_Animal + " limit 1;");
+        Id_Anim = reults[0].Id_Huesos;
+    } else {
+        Id_Anim = Id_Hueso;
+    }
 
-    res.render('Generales/especie.html', { datos, menu, List_Ani});
+    const List_Ani = await pool.query("select * from Lista_Modelos3D where Id_Animal = " + Id_Animal);
+    const Datos_Huesos = await pool.query("select * from Lista_Modelos3D where Id_Animal = " + Id_Animal + " and Id_Huesos = " + Id_Anim);
+
+    res.render('Generales/especie.html', { datos, menu, List_Ani, Datos_Huesos });
 };
 //#endregion
 

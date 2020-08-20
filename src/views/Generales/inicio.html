@@ -29,31 +29,25 @@
                                     <div class="page-body">
                                         <div class="row">
                                             <% Lista_Animales.forEach(element => { %>
-                                                <div class="col-sm-4">
-                                                    <!-- Basic usage card start -->
-                                                    <div class="card">
-                                                        <div class="card-header">
-                                                            <h3><%= element.Nombre_Animal %></h3>
-                                                            <h5><%= element.N_Cientifico %></h5>
-                                                        </div>
-                                                        <div class="card-block">
-                                                            <div class="panel panel-flat">
-                                                                <div class="panel-body">
-                                                                    <div class="image-cropper-container" align="center"><img
-                                                                            src="<%= element.Foto_Animal%>"
-                                                                            class="crop-basic img-fluid"
-                                                                            width="200px"></div>
-                                                                    <br>
-                                                                    <a class="btn btn-primary" href="/modelo3d/animal/<%= element.Id_Animal%>"
-                                                                        role="button">Ver Animal</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+
+                                            <div class="card"
+                                                style="width: 18rem; margin-right: 25px; margin-left: 25px;">
+                                                <div class="card-body">
+                                                    <h3 class="card-title"><%=element.Nombre_Animal%></h3>
+                                                    <h6 class="card-title"><%= element.N_Cientifico %></h6>
+                                                    <hr>
+                                                    <div class="image-cropper-container" align="center"><img
+                                                            src="<%= element.Foto_Animal%>" class="crop-basic img-fluid"
+                                                            width="200px">
                                                     </div>
-                                                    <!-- Basic usage card end -->
-                                                </div>                                                
-                                            <%});%>                                            
-                                        </div>                                        
+                                                    <hr>
+                                                    <a class="btn btn-primary"
+                                                        href="/modelo3d/animal/<%= element.Id_Animal%>/0"
+                                                        role="button">Ver Animal</a>
+                                                </div>
+                                            </div>                                          
+                                            <%});%>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

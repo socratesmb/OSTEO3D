@@ -85,13 +85,30 @@ rutas.get('/supadmin/bloquear_parte/:Id_Hueso', controlGeneral.Desactivar_Hueso)
 
 // ------- Seccion de Administrador -------------
 
-rutas.get('/admin/inicio', controlAdmin.inicio);
+rutas.get('/admin/inicio', controlGeneral.inicio);
 
+rutas.get('/admin/empresa', controlAdmin.empresa);
+
+rutas.post('/admin/empresa/actualizar', controlAdmin.actualizar_entidad);
+
+rutas.get('/admin/docentes', controlAdmin.docente);
+
+rutas.post('/admin/docente/creacion', controlAdmin.registro_docente);
+
+rutas.get('/admin/docente/buscar_docente/:Id_Persona', controlAdmin.buscar_docente);
+
+rutas.post('/admin/docente/actualizacion', controlAdmin.actualizar_docente);
+
+rutas.get('/admin/docente/bloquear_docente/:Id_Persona', controlAdmin.desactivar_docente);
+
+rutas.get('/admin/cancelar', controlAdmin.Cancelar_Docente);
+
+rutas.get('/admin/modelos', controlGeneral.Modelo3D);
 // ------- Seccion de Docente --------------
 
 // ------- Seccion de Estudiante --------------
 
-rutas.get('/models/inicio', controlEstud.inicio);
+rutas.get('/models/inicio', controlGeneral.inicio);
 
 // ------- Seccion Vistas Generales -------------
 
@@ -109,7 +126,7 @@ rutas.get('/registro', controlGeneral.registro);
 
 rutas.post('/crear/usuario', controlGeneral.registro_usuario);
 
-rutas.get('/modelo3d/animal/:Id_Animal', controlGeneral.Cargar_Modelo3D);
+rutas.get('/modelo3d/animal/:Id_Animal/:Id_Hueso', controlGeneral.Cargar_Modelo3D);
 
 //-----------------------------------------
 rutas.get('/Especies', (req, res) => {

@@ -2,33 +2,32 @@
 <html lang="es">
 
 <head>
-    <title>Especia Unica</title>
+    <title>Especi Unica</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <% include ../Partials/icono.html%>
     <% include ../Partials/style.html%>
-
 </head>
 
 <body themebg-pattern="pattern4">
     <div id="pcoded" class="pcoded iscollapsed" nav-type="st6" theme-layout="vertical" vertical-placement="left"
-    vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink"
-    vnavigation-view="view1" fream-type="theme1" sidebar-img="false" sidebar-img-type="img1" layout-type="light">
-    <div class="pcoded-overlay-box"></div>
-    <div class="pcoded-container navbar-wrapper">
-        <% include ../Partials/navbar.html%>
-        <% include ../Partials/slider.html%>
-        <div class="pcoded-main-container" style="margin-top: 56px;">
-            <div class="pcoded-wrapper">
+        vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink"
+        vnavigation-view="view1" fream-type="theme1" sidebar-img="false" sidebar-img-type="img1" layout-type="light">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <% include ../Partials/navbar.html%>
+            <% include ../Partials/slider.html%>
+            <div class="pcoded-main-container" style="margin-top: 56px;">
+                <div class="pcoded-wrapper">
 
-                <div class="pcoded-content">
-                    <div class="pcoded-inner-content">
-                        <div class="main-body">
-                            <div class="page-wrapper">
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <div class="page-body">
 
-                                <div class="page-body">
-                                    <div class="row">
+                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div data-component="" id="view200">
                                                     <section
@@ -36,13 +35,16 @@
                                                         <div class="main c-model-page-popup__main">
                                                             <div data-component="" id="view201">
                                                                 <div class="c-viewer">
-                                                                    <iframe title="Sketchfab Viewer"
-                                                                        style="height:500px;width:100%;"
-                                                                        data-ref="iframe" class="c-viewer__iframe"
-                                                                        src="<%=List_Ani[0].Ruta_Hueso%>" id="api-frame"
-                                                                        allow="autoplay;fullscreen;vr" allowvr=""
-                                                                        allowfullscreen="" mozallowfullscreen="true"
-                                                                        webkitallowfullscreen="true"></iframe>
+                                                                    <div class="sketchfab-embed-wrapper">
+                                                                        <iframe title="A 3D model" width="100%"
+                                                                            height="500px"
+                                                                            src="<%=Datos_Huesos[0].Ruta_Hueso%>"
+                                                                            frameborder="0"
+                                                                            allow="autoplay; fullscreen; vr"
+                                                                            mozallowfullscreen="true"
+                                                                            webkitallowfullscreen="true">
+                                                                        </iframe>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -52,23 +54,50 @@
                                             <div class="col-md-6">
                                                 <div class="card">
                                                     <div class="card-block" style="width:auto;height:500px;">
-                                                        <h1><%=List_Ani[0].Nombre_Hueso%></h1>
-                                                        <h5>Descripcion Hueso: </h5> <%=List_Ani[0].Descripcion_Hueso%>
+                                                        <h1><%=Datos_Huesos[0].Nombre_Hueso%></h1>
+                                                        <hr>
+                                                        <h5>Descripcion Hueso: </h5> <%=Datos_Huesos[0].Descripcion_Hueso%>
+                                                        <hr>
                                                         <h5>Caracteristicas Especiales: </h5>
-                                                        <%=List_Ani[0].Caracteres_Hueso%>
+                                                        <%=Datos_Huesos[0].Caracteres_Hueso%>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <%List_Ani.forEach(element => {%>
+
+                                            <div class="card"
+                                                style="width: 18rem; margin-right: 25px; margin-left: 25px;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><%=element.Nombre_Hueso%></h5>
+                                                    <hr>
+                                                    <div class="sketchfab-embed-wrapper">
+                                                        <iframe title="A 3D model" width="250" height="250"
+                                                            src="<%= element.Ruta_Hueso%>" frameborder="0"
+                                                            allow="autoplay; fullscreen; vr" mozallowfullscreen="true"
+                                                            webkitallowfullscreen="true">
+                                                        </iframe>
+                                                    </div>
+                                                    <hr>
+                                                    <a href="/modelo3d/animal/<%= element.Id_Animal%>/<%= element.Id_Huesos%>"
+                                                        class="btn btn-primary">Ver Caracteristicas</a>
+                                                </div>
+                                            </div>
+
+                                            <%});%>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
     <% include ../Partials/js.html%>
 </body>
 

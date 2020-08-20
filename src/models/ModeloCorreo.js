@@ -2,18 +2,17 @@ const nodemailer = require('nodemailer');
 const model = {};
 
 model.EnvioCorreo = async function (email, usuario, contrasena) {
-    let transporter = await nodemailer.createTransport({
-        host: 'mail.mastercode.com.co',
-        port: 465,
-        secure: true,
-        auth: {
-            user: "contacto@mastercode.com.co",
-            pass: "master-code2019"
-        }
-    });
+    let transporter = nodemailer.createTransport({
+      host: 'smtp.ethereal.email',
+      port: 587,
+      auth: {
+          user: 'mark81@ethereal.email',
+          pass: 'bZ2Q1GfeXk981XYjck'
+      }
+  });
 
     let mensaje = {
-        from: '<contacto@mastercode.com.co>',
+        from: '<mark81@ethereal.email>',
         to: email,
         subject: "Registro Osteo3D Software Educativo",
         html: `<html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" style="width:100%;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0">
@@ -263,18 +262,17 @@ model.EnvioCorreo = async function (email, usuario, contrasena) {
 };
 
 model.PasswordCorreo = async function (email, usuario, contrasena) {
-    let transporter = await nodemailer.createTransport({
-        host: 'mail.mastercode.com.co',
-        port: 465,
-        secure: true,
-        auth: {
-            user: "contacto@mastercode.com.co",
-            pass: "master-code2019"
-        }
-    });
+    let transporter = nodemailer.createTransport({
+      host: 'smtp.ethereal.email',
+      port: 587,
+      auth: {
+          user: 'mark81@ethereal.email',
+          pass: 'bZ2Q1GfeXk981XYjck'
+      }
+  });
 
     let mensaje = {
-        from: '<contacto@mastercode.com.co>',
+        from: '<mark81@ethereal.email>',
         to: email,
         subject: "Recuperacion Contraseña | Osteo3D Software Educativo",
         html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -525,18 +523,17 @@ model.PasswordCorreo = async function (email, usuario, contrasena) {
 };
 
 model.RegistroUsuario = async function (email, usuario, contrasena) {
-  let transporter = await nodemailer.createTransport({
-      host: 'mail.mastercode.com.co',
-      port: 465,
-      secure: true,
-      auth: {
-          user: "contacto@mastercode.com.co",
-          pass: "master-code2019"
-      }
-  });
+  let transporter = nodemailer.createTransport({
+    host: 'smtp.ethereal.email',
+    port: 587,
+    auth: {
+        user: 'mark81@ethereal.email',
+        pass: 'bZ2Q1GfeXk981XYjck'
+    }
+});
 
   let mensaje = {
-      from: '<contacto@mastercode.com.co>',
+      from: '<mark81@ethereal.email>',
       to: email,
       subject: "Registro Osteo3D Software Educativo",
       html: `<html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" style="width:100%;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0">
