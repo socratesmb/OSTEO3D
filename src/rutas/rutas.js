@@ -106,9 +106,34 @@ rutas.get('/admin/cancelar', controlAdmin.Cancelar_Docente);
 rutas.get('/admin/modelos', controlGeneral.Modelo3D);
 // ------- Seccion de Docente --------------
 
+rutas.get('/docente/grupos', controlDocen.grupos);
+
+rutas.post('/docente/grupos/agregar', controlDocen.agregar_grupos);
+
+rutas.get('/docente/grupos/ver/:Id_Grupo', controlDocen.lista_grupos);
+
+rutas.get('/docente/grupos/eliminar/:Id_Grupo', controlDocen.desactivar_grupo);
+
+rutas.get('/docente/grupos/estudiante/:Id_InsGrupo', controlDocen.quitar_estudiante);
+
+rutas.get('/docente/actividades', controlDocen.actividades);
+
+rutas.post('/docente/actividades/guardar', controlDocen.guardar_actividad);
+
 // ------- Seccion de Estudiante --------------
 
 rutas.get('/models/inicio', controlGeneral.inicio);
+
+rutas.get('/estudiante/actividades', controlEstud.actividades);
+
+rutas.post('/estudiante/grupos/agregar', controlEstud.registro_grupo);
+
+rutas.get('/estudiante/grupos/salir/:Id_Grupo', controlEstud.salir_grupo);
+
+rutas.get('/estudiante/grupos/ver/:Id_Grupo', controlEstud.cargar_actividad);
+
+rutas.post('/estudiante/actividades/guardar', controlEstud.guardar_actividad);
+
 
 // ------- Seccion Vistas Generales -------------
 
@@ -129,26 +154,18 @@ rutas.post('/crear/usuario', controlGeneral.registro_usuario);
 rutas.get('/modelo3d/animal/:Id_Animal/:Id_Hueso', controlGeneral.Cargar_Modelo3D);
 
 //-----------------------------------------
-rutas.get('/Especies', (req, res) => {
-    res.render('especies.html');
-});
 
+// Para ver las respuestas de los estudiantes en docentes
 rutas.get('/Grupos', (req, res) => {
     res.render('grupos.html');
 });
 
-rutas.get('/Caracteristica', (req, res) => {
-    res.render('Caracteristicas_especie.html');
-});
-
-
-
-rutas.get('/inicio', (req, res) => {
-    res.render('inicio.html');
-});
+//Para estudiantes responder
 rutas.get('/cuestionario', (req, res) => {
     res.render('cuestionario.html');
 });
+
+//Para crear la preguntas de docentes
 rutas.get('/preguntas', (req, res) => {
     res.render('preguntas.html');
 });

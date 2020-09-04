@@ -6,7 +6,7 @@ const correo = require('../models/ModeloCorreo');
 
 const model = {};
 
-// -------------- Seccion de Arreglos para Datos
+// -------------- Seccion de Arreglos para Datos -----------
 //#region 
 
 let alerta = {

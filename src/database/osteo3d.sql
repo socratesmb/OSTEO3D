@@ -182,3 +182,71 @@ inner join registro_pe on registro_pe.Persona_Id_Persona = persona.Id_Persona
 inner join rol on rol.Id_Rol = registro_pe.Rol_Id_Rol 
 inner join entidad on entidad.Id_Entidad = registro_pe.Entidad_Id_Entidad 
 where registro_pe.Estado = 'ACTIVO' and rol.Nombre = 'DOCENTE';
+
+CREATE FUNCTION Registro_Grupos (Nombre_Grupo VARCHAR(45), Materia VARCHAR(45), Codigo_Grupo VARCHAR(45), Contraseña VARCHAR(10), Id_Persona INT, Id_Entidad INT) 
+	returns boolean 
+	DETERMINISTIC
+begin 		
+	declare IDG int;	
+	
+	insert into `grupo`(`Id_Grupo` , `Nombre` , `Materia` , `Codigo` , `Contraseña`) values
+	(default, Nombre_Grupo, Materia, Codigo_Grupo, Contraseña);
+
+	select grupo.Id_Grupo into IDG from grupo where grupo.Nombre = Nombre_Grupo and grupo.Materia = Materia and grupo.Codigo = Codigo_Grupo;
+
+	insert into `inscripcion_grupo`(`Id_Inscripcion_Grupo` , `Persona_Id_Persona` , `Grupo_Id_Grupo` , `Entidad_Id_Entidad` , `Fecha_Inscripcion`) values
+	(default, Id_Persona, IDG, Id_Entidad, now());
+	
+	return true;
+end;
+
+
+create or replace view lista_grupos as 
+select inscripcion_grupo.Entidad_Id_Entidad as Id_Entidad, inscripcion_grupo.Persona_Id_Persona as Id_Persona, grupo.Id_Grupo as Id_Grupo, grupo.Nombre as Nombre_Grupo, grupo.Materia as Materia, grupo.Codigo as Codigo, grupo.Contraseña as Contrasena
+from grupo
+inner join inscripcion_grupo on inscripcion_grupo.Grupo_Id_Grupo = grupo.Id_Grupo
+inner join persona on persona.Id_Persona = inscripcion_grupo.Persona_Id_Persona 
+inner join registro_pe on registro_pe.Persona_Id_Persona = persona.Id_Persona 
+inner join rol on rol.Id_Rol = registro_pe.Rol_Id_Rol 
+where inscripcion_grupo.Estado = 'ACTIVO' and rol.Id_Rol = 3;
+
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `osteo3d`.`Registro_Grupos_Estudiantes`(Id_Grupo INT, Contraseña VARCHAR(10), Id_Persona INT, Id_Entidad INT) RETURNS int(11)
+    DETERMINISTIC
+begin 		
+	declare IDC int;	
+	declare REG INT;
+	declare retorno int;
+	
+	select inscripcion_grupo.Id_Inscripcion_Grupo into REG from inscripcion_grupo where inscripcion_grupo.Persona_Id_Persona = Id_Persona and inscripcion_grupo.Grupo_Id_Grupo = Id_Grupo and inscripcion_grupo.Entidad_Id_Entidad = Id_Entidad;
+
+	if REG != 0 then 
+		set retorno = 1;
+	else
+		select grupo.Id_Grupo into IDC from grupo where grupo.Id_Grupo = Id_Grupo and grupo.Contraseña = Contraseña;				
+		if IDC >= 0 then
+			insert into `inscripcion_grupo`(`Id_Inscripcion_Grupo` , `Persona_Id_Persona` , `Grupo_Id_Grupo` , `Entidad_Id_Entidad` , `Fecha_Inscripcion`, `Estado`) values
+			(default, Id_Persona, Id_Grupo, Id_Entidad, now(), 'ACTIVO');
+			set retorno = 2;
+		else
+			set retorno = 0;			
+		end if;	
+	end if;
+	return retorno;
+end;
+
+create or replace view lista_estudiantes_grupos as
+select inscripcion_grupo.Id_Inscripcion_Grupo as Id_InsGrupo, inscripcion_grupo.Entidad_Id_Entidad as Id_Entidad, inscripcion_grupo.Persona_Id_Persona as Id_Persona, inscripcion_grupo.Grupo_Id_Grupo as Id_Grupo, persona.Nombre as Nombre, persona.Apellido as Apellido, persona.Identificacion as Identificacion, persona.Correo_Electronico as Correo
+from inscripcion_grupo
+inner join persona on persona.Id_Persona = inscripcion_grupo.Persona_Id_Persona
+inner join registro_pe on registro_pe.Persona_Id_Persona = persona.Id_Persona
+inner join rol on rol.Id_Rol = registro_pe.Rol_Id_Rol
+where registro_pe.Estado = 'ACTIVO' and rol.Id_Rol = 4 and inscripcion_grupo.Estado = 'ACTIVO'
+
+create view Lista_Actividades as 
+select distinct cuestionario.Titulo as Titulo, concat(grupo.Materia, ' ', grupo.Nombre, ' ', grupo.Codigo) as Grupo, entidad.Id_Entidad as Id_Entidad
+from cuestionario 
+inner join grupo on grupo.Id_Grupo = cuestionario.grupo_Id_Grupo 
+inner join inscripcion_grupo on inscripcion_grupo.Grupo_Id_Grupo = grupo.Id_Grupo 
+inner join entidad on entidad.Id_Entidad = inscripcion_grupo.Entidad_Id_Entidad 
+where entidad.Estado = 'ACTIVO' and inscripcion_grupo.Estado = 'ACTIVO'

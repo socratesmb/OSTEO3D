@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupos</title>
+    <% include ../Partials/icono.html%>
+    <% include ../Partials/style.html%>
+</head>
+
+<body themebg-pattern="pattern4">
+    <div id="pcoded" class="pcoded iscollapsed" nav-type="st6" theme-layout="vertical" vertical-placement="left:"
+        vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink"
+        vnavigation-view="view1" fream-type="theme1" sidebar-img="false" sidebar-img-type="img1" layout-type="light">
+        <div class="pcoded-container navbar-wrapper">
+            <% include ../Partials/navbar.html%>
+            <% include ../Partials/slider.html%>
+            <div class="pcoded-main-container" style="margin-top: 56px;">
+                <% include ../Partials/alertas.html%>
+                <div class="pcoded-wrapper">
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <div class="page-header">
+                                        <div class="row align-items-end">
+                                            <div class="col-lg-8">
+                                                <div class="page-header-title">
+                                                    <ul class="breadcrumb-title">
+                                                        <li class="breadcrumb-item"> <strong> <a href="/docente/grupos"> < Regresar </a> </strong> 
+                                                        </li>
+                                                        <li class="breadcrumb-item"><a>Grupos</a>
+                                                        <li class="breadcrumb-item"><a>Anatomia</a>
+                                                        <li class="breadcrumb-item"><a>Grupo B</a>
+                                                        <li class="breadcrumb-item"><a>AN-2020</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="page-body">
+
+                                        <div class="table-responsive dt-responsive">
+                                            <div id="dom-jqry_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12">
+                                                        <table id="dom-jqry"
+                                                            class="table table-striped table-bordered nowrap dataTable"
+                                                            role="grid" aria-describedby="dom-jqry_info">
+                                                            <thead>
+                                                                <tr role="row">
+                                                                    <th class="sorting_asc" tabindex="0"
+                                                                        aria-controls="dom-jqry" rowspan="1" colspan="1"
+                                                                        aria-sort="ascending"
+                                                                        aria-label="Name: activate to sort column descending"
+                                                                        style="width: 50px;">No</th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dom-jqry" rowspan="1" colspan="1"
+                                                                        aria-label="Position: activate to sort column ascending"
+                                                                        style="width: 150px;">Nombre </th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dom-jqry" rowspan="1" colspan="1"
+                                                                        aria-label="Office: activate to sort column ascending"
+                                                                        style="width: 180px;">Apellido</th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dom-jqry" rowspan="1" colspan="1"
+                                                                        aria-label="Age: activate to sort column ascending"
+                                                                        style="width: 115px;">Identificación</th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dom-jqry" rowspan="1" colspan="1"
+                                                                        aria-label="Start date: activate to sort column ascending"
+                                                                        style="width: 115px;">Correo Electronico </th>
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dom-jqry" rowspan="1" colspan="1"
+                                                                        aria-label="Salary: activate to sort column ascending"
+                                                                        style="width: 81px;">Accion </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <%if(ArrayEstudiantes){%>
+                                                                <% for(var i=0; i < ArrayEstudiantes.length; i++) {%>
+                                                                <tr>
+                                                                    <td> <%= i+1 %> </td>
+                                                                    <td> <%= ArrayEstudiantes[i].Nombre%>
+                                                                    </td>
+                                                                    <td> <%= ArrayEstudiantes[i].Apellido%>
+                                                                    </td>
+                                                                    <td> <%= ArrayEstudiantes[i].Identificacion%>
+                                                                    </td>
+                                                                    <td> <%= ArrayEstudiantes[i].Correo%>
+                                                                    </td>
+                                                                    <td style='text-align: center; width: 60px;'>
+                                                                        <a type='button' class='btn btn-danger bo_fa'
+                                                                            href="/docente/grupos/estudiante/<%= ArrayEstudiantes[i].Id_InsGrupo%>"
+                                                                            data-toggle='tooltip' data-placement='top'
+                                                                            title='Quitar Estudiante'
+                                                                            style="width: 50px;"><i
+                                                                                class='fa fa-ban'></i>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                <%}%>
+                                                                <%}%>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <% include ../Partials/js.html%>
+
+</body>
+
+</html>

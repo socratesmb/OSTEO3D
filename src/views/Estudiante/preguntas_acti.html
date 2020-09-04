@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividades</title>
+    <% include ../Partials/icono.html%>
+    <% include ../Partials/style.html%>
+</head>
+
+<body themebg-pattern="pattern4">
+    <div id="pcoded" class="pcoded iscollapsed" nav-type="st6" theme-layout="vertical" vertical-placement="left"
+        vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink"
+        vnavigation-view="view1" fream-type="theme1" sidebar-img="false" sidebar-img-type="img1" layout-type="light">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <% include ../Partials/navbar.html%>
+            <% include ../Partials/slider.html%>
+            <div class="pcoded-main-container" style="margin-top: 56px;">
+                <% include ../Partials/alertas.html%>
+                <div class="pcoded-wrapper">
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <div class="page-body">
+                                        <div class="card">
+
+                                            <ul class="nav nav-tabs md-tabs " role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" data-toggle="tab" href="#info"
+                                                        role="tab"> <%= Actividades[0].Titulo%>
+                                                    </a>
+                                                    <div class="slide"></div>
+                                                </li>
+                                            </ul>
+
+                                            <div class="tab-content card-block">
+
+                                                <div class="tab-pane active" id="info" role="tabpanel">
+                                                    <div class="card-block">
+                                                        <div id="Repetidor">
+                                                            <form action="/estudiante/actividades/guardar" method="post">                                                                
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <label>Pregunta 1</label>
+                                                                        <input type="text" id="/Pregunta1"
+                                                                            name="/Pregunta1" style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[0].Pregunta%>">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta11"
+                                                                            name="Respuesta11"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[0].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion11">
+                                                                            <option value="">Seleccione</option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta12"
+                                                                            name="Respuesta12"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[1].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion12">
+                                                                            <option value="">Seleccione</option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta13"
+                                                                            name="Respuesta13"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[2].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion13">
+                                                                            <option value="">Seleccione</option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta14"
+                                                                            name="Respuesta14"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[3].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion14">
+                                                                            <option value="">Seleccione </option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <label>Pregunta 2</label>
+                                                                        <input type="text" id="/Pregunta2"
+                                                                            name="/Pregunta2" style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[4].Pregunta%>">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta21"
+                                                                            name="Respuesta21"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[4].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion21">
+                                                                            <option value="">Seleccione</option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta22"
+                                                                            name="Respuesta22"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[5].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion22">
+                                                                            <option value="">Seleccione</option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta23"
+                                                                            name="Respuesta23"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[6].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion23">
+                                                                            <option value="">Seleccione</option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta24"
+                                                                            name="Respuesta24"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[7].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion24">
+                                                                            <option value="">Seleccione </option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <label>Pregunta 3</label>
+                                                                        <input type="text" id="/Pregunta3"
+                                                                            name="/Pregunta3" style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[8].Pregunta%>">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta31"
+                                                                            name="Respuesta31"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[8].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion31">
+                                                                            <option value="">Seleccione</option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta32"
+                                                                            name="Respuesta32"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[9].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion32">
+                                                                            <option value="">Seleccione</option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta33"
+                                                                            name="Respuesta33"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[10].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion33">
+                                                                            <option value="">Seleccione</option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta34"
+                                                                            name="Respuesta34"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[11].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion34">
+                                                                            <option value="">Seleccione </option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <label>Pregunta 4</label>
+                                                                        <input type="text" id="/Pregunta4"
+                                                                            name="/Pregunta4" style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[12].Pregunta%>">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta41"
+                                                                            name="Respuesta41"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[12].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion41">
+                                                                            <option value="">Seleccione</option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta42"
+                                                                            name="Respuesta42"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[13].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion42">
+                                                                            <option value="">Seleccione</option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta43"
+                                                                            name="Respuesta43"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[14].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion43">
+                                                                            <option value="">Seleccione</option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta44"
+                                                                            name="Respuesta44"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[15].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion44">
+                                                                            <option value="">Seleccione </option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <label>Pregunta 5</label>
+                                                                        <input type="text" id="/Pregunta5"
+                                                                            name="/Pregunta5" style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[16].Pregunta%>">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta51"
+                                                                            name="Respuesta51"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[16].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion51">
+                                                                            <option value="">Seleccione</option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta52"
+                                                                            name="Respuesta52"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[17].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion52">
+                                                                            <option value="">Seleccione</option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta53"
+                                                                            name="Respuesta53"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[18].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion53">
+                                                                            <option value="">Seleccione</option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Respuesta</label>
+                                                                        <input type="text" id="Respuesta54"
+                                                                            name="Respuesta54"
+                                                                            style="border-radius:8px;"
+                                                                            class="form-control"  value="<%= Actividades[19].Opcion%>">
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Responder</label>
+                                                                        <select class="form-control" required
+                                                                            name="Opcion54">
+                                                                            <option value="">Seleccione </option>
+                                                                            <option value="1">Si</option>
+                                                                            <option value="0">No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <button id="Agregar" style="margin-top: 20px"
+                                                                            type="submit"
+                                                                            class="btn btn-primary waves-effect waves-light"><i
+                                                                                class="icofont icofont-save"></i><span
+                                                                                class="m-l-10">Guardar
+                                                                                Preguntas</span></button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include ../Partials/js.html%>
+</body>
+
+</html>
