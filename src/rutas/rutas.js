@@ -120,6 +120,10 @@ rutas.get('/docente/actividades', controlDocen.actividades);
 
 rutas.post('/docente/actividades/guardar', controlDocen.guardar_actividad);
 
+rutas.get('/docente/informes', controlDocen.informes);
+
+rutas.get('/docente/informes/ver/:Id_Grupo', controlDocen.info_notas);
+
 // ------- Seccion de Estudiante --------------
 
 rutas.get('/models/inicio', controlGeneral.inicio);

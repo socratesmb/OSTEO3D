@@ -191,6 +191,57 @@ model.guardar_actividad = async (req, res) => {
 
 //#endregion
 
+//--------- Seccion para ver los resultados o notas ----------------
+model.informes = async (req, res) => {
+    datos = req.session.datos;
+    menu = req.session.menu;
+
+    const ArrayGrupos = await pool.query("select * from lista_grupos where Id_Entidad = " + datos.Id_Entidad + " and Id_Persona = " + datos.Id_Empleado);
+
+    res.render('Docente/informes.html', { datos, menu, alerta, ArrayGrupos });
+    LimpiarVariables();
+}
+
+model.info_notas = async (req, res) => {
+    datos = req.session.datos;
+    menu = req.session.menu;
+
+    const { Id_Grupo } = req.params;
+
+    let Id_Personas = await pool.query("select distinct Persona_Id_Persona as id from respuestas where Grupo_Id_Grupo =" + Id_Grupo);
+
+    if (Id_Personas.length > 0) {
+        var ArrayNotas = [];
+
+        for (let i = 0; i < Id_Personas.length; i++) {
+            let nombres = await pool.query("select concat(Nombre, ' ' , Apellido) as nombre from persona where Id_Persona =" + Id_Personas[i].id);
+            let nota = await CalculoNota(Id_Personas[i].id, Id_Grupo);
+
+            console.log('-------------------------')
+            console.log(nombres[0].nombre)
+            console.log(nota)
+            console.log('-------------------------')
+            var nombress = nombres[0].nombre;
+
+            ArrayNotas.push = (nombress, nota);
+            console.log(ArrayNotas);
+            console.log('-------------------------')
+        }
+        console.log(ArrayNotas);
+
+        res.render('Docente/info_notas.html', { datos, menu, ArrayNotas, alerta });
+        LimpiarVariables();
+
+    } else {
+        alerta = {
+            tipo: 'inseguro',
+            mensaje: 'No hay Respuestas de Estudiantes'
+        };
+        res.redirect('/docente/informes');
+    }
+}
+
+
 //------- Funciones de Limpieza de Variables ----------
 //#region 
 function LimpiarVariables() {
@@ -198,6 +249,30 @@ function LimpiarVariables() {
         tipo: '',
         mensaje: ''
     }
+}
+
+async function CalculoNota(Id_Persona, Id_Grupo) {
+    let respuestas = await pool.query("select Cuestionario_Id_Cuestionario as Id, respuesta from respuestas where Grupo_Id_Grupo = " + Id_Grupo + " and Persona_Id_Persona =" + Id_Persona);
+    let cuestionario = await pool.query("select Id_Cuestionario as Id, Estado from cuestionario where grupo_Id_Grupo =" + Id_Grupo);
+
+    var nota = 0;
+
+    for (let i = 0; i < cuestionario.length; i++) {
+        if (cuestionario[i].Estado == 1) {
+            if (cuestionario[i].id == respuestas[i].Id) {
+                if (cuestionario[i].Estado == respuestas[i].respuesta) {
+                    nota = nota + 1;
+                }
+            }
+        }
+    }
+
+    if (nota > 5) {
+        nota = 5;
+    }
+
+    return nota;
+
 }
 //#endregion
 
